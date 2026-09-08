@@ -1,0 +1,6 @@
+{
+  "name": "AI Prompt & Snippet Share Studio",
+  "description": "Discover, search, filter, copy, and export high-performance AI prompts and snippets for ChatGPT, Claude, Midjourney, and more with 20-language i18n support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

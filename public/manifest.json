@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "name": "AI Prompt & Snippet Share Studio",
+  "short_name": "PromptStudio",
+  "description": "Discover, search, filter, copy, and export high-performance AI prompts and snippets for ChatGPT, Claude, Midjourney, and more.",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#090d16",
+  "background_color": "#090d16",
+  "categories": ["productivity", "utilities", "developer-tools"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%23090d16'/%3E%3Cpath d='M256 96 L288 200 L392 232 L288 264 L256 368 L224 264 L120 232 L224 200 Z' fill='%238b5cf6'/%3E%3Ccircle cx='360' cy='140' r='24' fill='%2306b6d4'/%3E%3Ccircle cx='152' cy='360' r='18' fill='%2310b981'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%23090d16'/%3E%3Cpath d='M96 36 L108 75 L147 87 L108 99 L96 138 L84 99 L45 87 L84 75 Z' fill='%238b5cf6'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

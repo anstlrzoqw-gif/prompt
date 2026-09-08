@@ -1,0 +1,4095 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Prompt & Snippet Share Studio | Battle-Tested Prompts</title>
+  <meta name="description" content="Discover, search, filter, copy, and export high-performance AI prompts and snippets for ChatGPT, Claude, Midjourney, and DeepSeek with 20-language support." />
+  <meta name="keywords" content="AI prompts, ChatGPT prompts, Claude prompts, Midjourney snippets, Prompt Engineering, DeepSeek, AI Studio" />
+  <meta name="author" content="AI Prompt Studio" />
+  <meta name="theme-color" content="#090d16" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AI Prompt & Snippet Share Studio" />
+  <meta property="og:description" content="High-performance AI prompts & snippets repository. Search, customize, copy, and export for free." />
+  <meta property="og:url" content="https://promptstudio.ai/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Prompt & Snippet Share Studio" />
+  <meta name="twitter:description" content="Search, filter, customize variables, and copy battle-tested AI prompts." />
+
+  <!-- PWA meta tags & manifest -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PromptStudio" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Prompt & Snippet Share Studio",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "Browse, search, customize, and export high-performance AI prompt snippets.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              900: '#4c1d95',
+            },
+            cyber: {
+              bg: '#090d16',
+              surface: '#121624',
+              surfaceHover: '#181e30',
+              border: '#232b42',
+              neon: '#06b6d4',
+              purple: '#a855f7',
+              emerald: '#10b981'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom scrollbar and animations */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(140, 150, 180, 0.2); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(140, 150, 180, 0.4); }
+
+    .glow-purple { box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.25); }
+    .glow-cyan { box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25); }
+    
+    /* Theme overrides */
+    body.theme-minimal {
+      --tw-bg-opacity: 1;
+      background-color: #0f172a !important;
+    }
+    body.theme-light {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+    }
+    body.theme-light .card-surface {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+    body.theme-light .card-header {
+      color: #0f172a !important;
+    }
+    body.theme-light .text-muted {
+      color: #64748b !important;
+    }
+  </style>
+</head>
+<body class="bg-cyber-bg text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200 antialiased selection:bg-purple-500 selection:text-white pb-16 sm:pb-0">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-cyber-bg/85 border-b border-cyber-border/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg p-1">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-brand-600/30 group-hover:scale-105 transition-transform">
+          <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-300 bg-clip-text text-transparent">
+            PromptStudio
+          </span>
+          <span class="text-[10px] text-cyan-400 font-mono tracking-wider -mt-1 hidden sm:inline" id="lbl-studio-tag">AI PROMPT REPOSITORY</span>
+        </div>
+      </a>
+
+      <!-- Center Controls / Search shortcut preview (desktop) -->
+      <div class="hidden md:flex items-center gap-2 text-xs text-slate-400 bg-cyber-surface px-3 py-1.5 rounded-full border border-cyber-border">
+        <i data-lucide="command" class="w-3.5 h-3.5 text-slate-400"></i>
+        <span>Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[10px] border border-slate-700">/</kbd> to search, <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[10px] border border-slate-700">N</kbd> to add, <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[10px] border border-slate-700">T</kbd> to translate</span>
+      </div>
+
+      <!-- Right Actions: Language, Theme, Translator, New Prompt, Export/Import -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- 20-Language Selector (Rule 1) -->
+        <div class="relative">
+          <label for="lang-select" class="sr-only">Language</label>
+          <div class="flex items-center gap-1.5 bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border rounded-lg px-2.5 py-1.5 text-xs text-slate-200 transition-colors">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-cyan-400 shrink-0"></i>
+            <select id="lang-select" class="bg-transparent text-xs text-slate-200 font-medium focus:outline-none cursor-pointer pr-1">
+              <option value="en" class="bg-slate-900 text-white">🇺🇸 English</option>
+              <option value="ko" class="bg-slate-900 text-white">🇰🇷 한국어</option>
+              <option value="ja" class="bg-slate-900 text-white">🇯🇵 日本語</option>
+              <option value="zh" class="bg-slate-900 text-white">🇨🇳 简体中文</option>
+              <option value="es" class="bg-slate-900 text-white">🇪🇸 Español</option>
+              <option value="fr" class="bg-slate-900 text-white">🇫🇷 Français</option>
+              <option value="de" class="bg-slate-900 text-white">🇩🇪 Deutsch</option>
+              <option value="pt" class="bg-slate-900 text-white">🇧🇷 Português</option>
+              <option value="ru" class="bg-slate-900 text-white">🇷🇺 Русский</option>
+              <option value="it" class="bg-slate-900 text-white">🇮🇹 Italiano</option>
+              <option value="vi" class="bg-slate-900 text-white">🇻🇳 Tiếng Việt</option>
+              <option value="th" class="bg-slate-900 text-white">🇹🇭 ไทย</option>
+              <option value="id" class="bg-slate-900 text-white">🇮🇩 Indonesia</option>
+              <option value="tr" class="bg-slate-900 text-white">🇹🇷 Türkçe</option>
+              <option value="pl" class="bg-slate-900 text-white">🇵🇱 Polski</option>
+              <option value="nl" class="bg-slate-900 text-white">🇳🇱 Nederlands</option>
+              <option value="ar" class="bg-slate-900 text-white">🇸🇦 العربية</option>
+              <option value="hi" class="bg-slate-900 text-white">🇮🇳 हिन्दी</option>
+              <option value="sv" class="bg-slate-900 text-white">🇸🇪 Svenska</option>
+              <option value="uk" class="bg-slate-900 text-white">🇺🇦 Українська</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Theme Toggle (Rule 7) -->
+        <button id="theme-toggle-btn" class="p-2 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 hover:text-white transition-all active:scale-95" title="Switch Theme (Cyber / Light / Minimal)" aria-label="Toggle Theme">
+          <i data-lucide="moon" id="theme-icon" class="w-4 h-4 text-purple-400"></i>
+        </button>
+
+        <!-- Import / Export Modal Trigger (Rule 4 & 15) -->
+        <button id="open-io-btn" class="p-2 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 hover:text-cyan-300 transition-all active:scale-95" title="Export / Import Prompt Library" aria-label="Export Import">
+          <i data-lucide="arrow-down-up" class="w-4 h-4"></i>
+        </button>
+
+        <!-- AI Prompt Translator Button -->
+        <button id="open-translator-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900/80 border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 hover:text-cyan-100 font-medium text-xs sm:text-sm shadow-md shadow-cyan-950/40 transition-all active:scale-95 focus:ring-2 focus:ring-cyan-400" title="AI Prompt Translator & Optimizer (Press 'T')">
+          <i data-lucide="languages" class="w-4 h-4 text-cyan-400"></i>
+          <span id="btn-text-translator">프롬프트 번역기</span>
+        </button>
+
+        <!-- New Prompt Button -->
+        <button id="open-new-prompt-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-brand-600/30 transition-all active:scale-95 focus:ring-2 focus:ring-purple-400">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span id="btn-text-new">New Prompt</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full space-y-6">
+
+    <!-- HERO BANNER -->
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyber-surface via-slate-900/90 to-brand-950/40 border border-cyber-border p-6 sm:p-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="space-y-2 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/30">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span id="hero-badge">Curated AI Snippets for ChatGPT, Claude & Midjourney</span>
+        </div>
+        <h1 id="hero-heading" class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          High-Performance AI Prompts & Snippets
+        </h1>
+        <p id="hero-subtitle" class="text-sm sm:text-base text-slate-400 leading-relaxed">
+          Browse, search, fill dynamic parameters, and 1-click copy battle-tested system prompts. Save your custom library locally or export to JSON.
+        </p>
+      </div>
+
+      <!-- Quick Stats Widget -->
+      <div class="grid grid-cols-3 gap-3 w-full sm:w-auto shrink-0">
+        <div class="bg-slate-950/60 border border-cyber-border rounded-xl p-3 text-center">
+          <div id="stat-total" class="text-xl font-extrabold text-cyan-400 font-mono">12</div>
+          <div id="lbl-stat-prompts" class="text-[11px] text-slate-400">Prompts</div>
+        </div>
+        <div class="bg-slate-950/60 border border-cyber-border rounded-xl p-3 text-center">
+          <div id="stat-custom" class="text-xl font-extrabold text-purple-400 font-mono">0</div>
+          <div id="lbl-stat-custom" class="text-[11px] text-slate-400">Custom</div>
+        </div>
+        <div class="bg-slate-950/60 border border-cyber-border rounded-xl p-3 text-center">
+          <div id="stat-favs" class="text-xl font-extrabold text-amber-400 font-mono">0</div>
+          <div id="lbl-stat-favs" class="text-[11px] text-slate-400">Favorites</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RULE 17: AD SLOT READY -->
+    <!-- AD SLOT -->
+    <div id="ad-slot-container" class="w-full min-h-[90px] rounded-xl border border-dashed border-slate-700 bg-slate-900/40 flex flex-col sm:flex-row items-center justify-between p-4 px-6 text-xs text-slate-400 transition-all hover:border-slate-600">
+      <div class="flex items-center gap-3 mb-2 sm:mb-0">
+        <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] uppercase tracking-wider text-slate-400 border border-slate-700 font-mono">SPONSOR</span>
+        <span class="font-medium text-slate-300">Boost your AI Workflow with Next-Gen Developer Tools</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-slate-500 text-[11px]">728x90 Banner Ad Ready Slot</span>
+        <button onclick="showToast('Ad slot clicked (Ready for Google AdSense or Carbon Ads)', 'info')" class="text-xs px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-cyan-400 font-medium transition-colors">
+          Partner With Us
+        </button>
+      </div>
+    </div>
+    <!-- /AD SLOT -->
+
+    <!-- CONTROLS & FILTER BAR -->
+    <div class="space-y-4">
+      
+      <!-- Search Input + Quick Filter Toggles -->
+      <div class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+        <!-- Search Bar (Rule 8: press / to focus) -->
+        <div class="relative flex-grow">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search prompts by title, keywords, model, or tags... (Press '/' to search)"
+            class="w-full pl-10 pr-10 py-2.5 bg-cyber-surface border border-cyber-border rounded-xl text-sm text-white placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all"
+            aria-label="Search prompts"
+          />
+          <button id="clear-search-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1" title="Clear search">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="flex items-center gap-2 shrink-0">
+          <label for="sort-select" class="text-xs text-slate-400 shrink-0 flex items-center gap-1">
+            <i data-lucide="arrow-down-narrow-wide" class="w-3.5 h-3.5"></i>
+            <span id="lbl-sort">Sort:</span>
+          </label>
+          <select id="sort-select" class="bg-cyber-surface border border-cyber-border rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-500 cursor-pointer">
+            <option value="newest">Newest First</option>
+            <option value="popular">Most Copied</option>
+            <option value="alpha">Alphabetical</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs scrollbar-none" id="category-pills">
+        <button data-cat="all" class="cat-pill active px-3 py-1.5 rounded-lg bg-brand-600 text-white font-medium shadow transition-all shrink-0">
+          All
+        </button>
+        <button data-cat="dev" class="cat-pill px-3 py-1.5 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 font-medium transition-all shrink-0">
+          💻 Code & Architecture
+        </button>
+        <button data-cat="writing" class="cat-pill px-3 py-1.5 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 font-medium transition-all shrink-0">
+          ✍️ Content & Writing
+        </button>
+        <button data-cat="marketing" class="cat-pill px-3 py-1.5 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 font-medium transition-all shrink-0">
+          🚀 Marketing & Sales
+        </button>
+        <button data-cat="vision" class="cat-pill px-3 py-1.5 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 font-medium transition-all shrink-0">
+          🎨 Midjourney & Vision
+        </button>
+        <button data-cat="strategy" class="cat-pill px-3 py-1.5 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 font-medium transition-all shrink-0">
+          📊 Business & Strategy
+        </button>
+        <button data-cat="productivity" class="cat-pill px-3 py-1.5 rounded-lg bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 font-medium transition-all shrink-0">
+          ⚡ Productivity
+        </button>
+      </div>
+
+      <!-- Secondary Filters: Model & View Filter (Favorites / Custom) -->
+      <div class="flex flex-wrap items-center justify-between gap-2 text-xs pt-1">
+        <div class="flex flex-wrap items-center gap-1.5" id="model-pills">
+          <span class="text-slate-400 text-[11px] mr-1" id="lbl-model-filter">Model:</span>
+          <button data-model="all" class="model-pill active px-2.5 py-1 rounded-md bg-slate-800 text-slate-200 border border-slate-700 font-medium">All</button>
+          <button data-model="Claude" class="model-pill px-2.5 py-1 rounded-md bg-cyber-surface hover:bg-slate-800 text-slate-400 border border-cyber-border">Claude 3.5</button>
+          <button data-model="ChatGPT" class="model-pill px-2.5 py-1 rounded-md bg-cyber-surface hover:bg-slate-800 text-slate-400 border border-cyber-border">ChatGPT-4o</button>
+          <button data-model="Midjourney" class="model-pill px-2.5 py-1 rounded-md bg-cyber-surface hover:bg-slate-800 text-slate-400 border border-cyber-border">Midjourney v6</button>
+          <button data-model="DeepSeek" class="model-pill px-2.5 py-1 rounded-md bg-cyber-surface hover:bg-slate-800 text-slate-400 border border-cyber-border">DeepSeek R1</button>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+          <!-- Favorite Only Toggle -->
+          <button id="filter-fav-btn" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 transition-colors">
+            <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span id="lbl-btn-favs">Favorites</span>
+          </button>
+          <!-- Custom Only Toggle -->
+          <button id="filter-custom-btn" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border text-slate-300 transition-colors">
+            <i data-lucide="user" class="w-3.5 h-3.5 text-purple-400"></i>
+            <span id="lbl-btn-custom">My Snippets</span>
+          </button>
+          <!-- Translate All Toggle -->
+          <button id="toggle-translate-all-btn" class="flex items-center gap-1.5 px-3 py-1 rounded-md bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyan-500/30 text-cyan-300 hover:text-cyan-200 transition-colors" title="Toggle translation for all prompt cards">
+            <i data-lucide="languages" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span id="lbl-btn-translate-all">한국어 번역 보기</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tag Cloud Dynamic Bar -->
+      <div id="tag-cloud-wrapper" class="pt-1 flex items-center gap-2 overflow-x-auto pb-1 text-xs scrollbar-none">
+        <span class="text-slate-400 text-[11px] shrink-0 flex items-center gap-1 font-medium">
+          <i data-lucide="tag" class="w-3 h-3 text-cyan-400"></i>
+          <span id="lbl-tag-cloud">태그 탐색:</span>
+        </span>
+        <div id="tag-cloud-pills" class="flex items-center gap-1.5 shrink-0">
+          <!-- Dynamically generated tags -->
+        </div>
+        <button id="clear-tag-btn" onclick="clearTagFilter()" class="hidden px-2 py-0.5 rounded text-[10px] bg-rose-500/20 text-rose-300 border border-rose-500/40 shrink-0 hover:bg-rose-500/30 transition-colors flex items-center gap-1">
+          <span>태그 해제</span>
+          <i data-lucide="x" class="w-2.5 h-2.5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- PROMPT GRID -->
+    <div id="prompts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2">
+      <!-- Injected dynamically via JS -->
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div id="empty-state" class="hidden text-center py-16 px-4 bg-cyber-surface/40 rounded-2xl border border-dashed border-cyber-border">
+      <div class="w-14 h-14 rounded-2xl bg-slate-800/80 mx-auto flex items-center justify-center mb-3">
+        <i data-lucide="search-x" class="w-7 h-7 text-slate-400"></i>
+      </div>
+      <h3 id="lbl-empty-title" class="text-base font-bold text-slate-200">No matching prompts found</h3>
+      <p id="lbl-empty-desc" class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-4">
+        Try adjusting your search keywords, resetting category filters, or create a brand new prompt snippet.
+      </p>
+      <button onclick="resetFilters()" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white transition-colors">
+        Reset All Filters
+      </button>
+    </div>
+
+  </main>
+
+  <!-- FOOTER (Rule 14: Analytics & Feedback ready) -->
+  <footer class="mt-auto border-t border-cyber-border bg-slate-950/60 py-8 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-brand-600 to-cyan-500 flex items-center justify-center text-white">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        </div>
+        <span class="font-semibold text-slate-200">AI Prompt & Snippet Share Studio</span>
+        <span class="text-slate-600">|</span>
+        <span>Zero-Build Production Ready v1.0</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <button id="open-shortcuts-btn" class="hover:text-slate-200 transition-colors flex items-center gap-1">
+          <i data-lucide="keyboard" class="w-3.5 h-3.5"></i>
+          <span>Shortcuts</span>
+        </button>
+        <button id="open-feedback-btn" class="hover:text-slate-200 transition-colors flex items-center gap-1">
+          <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+          <span>Feedback & Support</span>
+        </button>
+        <button id="install-pwa-btn" class="hidden hover:text-cyan-400 transition-colors flex items-center gap-1">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Install App</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. NEW / EDIT PROMPT MODAL -->
+  <div id="prompt-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-cyber-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-5 h-5 text-brand-400"></i>
+          <h3 id="modal-prompt-title" class="font-bold text-base text-white">Create Prompt Snippet</h3>
+        </div>
+        <button onclick="closeModal('prompt-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body Form -->
+      <form id="prompt-form" class="p-6 overflow-y-auto space-y-4 text-xs">
+        <input type="hidden" id="form-prompt-id" value="" />
+
+        <!-- Draft Recovery Alert -->
+        <div id="draft-alert-banner" class="hidden p-3 bg-amber-950/60 border border-amber-500/40 rounded-xl flex items-center justify-between gap-2 transition-all">
+          <div class="flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4 text-amber-400 shrink-0"></i>
+            <div>
+              <p class="text-amber-200 font-semibold text-xs">작성 중이던 임시 저장본이 있습니다</p>
+              <p id="draft-saved-time" class="text-[10px] text-amber-300/80">이전 작성 내용을 불러오시겠습니까?</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="loadDraftPrompt()" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] transition-colors shadow-sm">
+              불러오기
+            </button>
+            <button type="button" onclick="discardDraftPrompt()" class="px-2 py-1 rounded-lg text-amber-300 hover:text-white text-[11px] transition-colors">
+              삭제
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Prompt Title *</label>
+          <input type="text" id="form-title" required placeholder="e.g. Senior Full-Stack Code Reviewer" class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Target Model *</label>
+            <select id="form-model" class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none focus:border-brand-500">
+              <option value="Claude">Claude 3.5 Sonnet</option>
+              <option value="ChatGPT">ChatGPT (GPT-4o)</option>
+              <option value="Midjourney">Midjourney v6</option>
+              <option value="DeepSeek">DeepSeek R1 / V3</option>
+              <option value="Gemini">Gemini 2.0 Flash</option>
+              <option value="General">Universal AI</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Category *</label>
+            <select id="form-category" class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none focus:border-brand-500">
+              <option value="dev">Code & Architecture</option>
+              <option value="writing">Content & Writing</option>
+              <option value="marketing">Marketing & Sales</option>
+              <option value="vision">Midjourney & Vision</option>
+              <option value="strategy">Business & Strategy</option>
+              <option value="productivity">Productivity</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Short Description *</label>
+          <input type="text" id="form-desc" required placeholder="Brief summary of what this prompt accomplishes..." class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-slate-300 font-semibold">Prompt Template *</label>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="autoTranslateForm()" class="text-[11px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-medium bg-cyan-950/60 hover:bg-cyan-900/60 border border-cyan-500/30 px-2 py-0.5 rounded transition-colors" title="한/영 자동 번역 도우미">
+                <i data-lucide="languages" class="w-3 h-3"></i>
+                <span id="lbl-form-translate-btn">한/영 자동 번역</span>
+              </button>
+              <span class="text-[10px] text-slate-400 hidden sm:inline">Tip: Use [Variable]</span>
+            </div>
+          </div>
+          <textarea id="form-prompt" rows="5" required placeholder="Act as a senior software architect. Analyze the following [Programming Language] code for security vulnerabilities, edge cases, and performance: [Code Snippet]" class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white font-mono text-xs focus:outline-none focus:border-brand-500"></textarea>
+        </div>
+
+        <!-- Real-time Prompt Quality Diagnostic & AI Auto-Polisher -->
+        <div class="p-3 bg-slate-950/80 border border-cyber-border rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="gauge" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span class="text-slate-200 font-semibold text-xs">프롬프트 품질 점수 (Prompt Score)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="prompt-quality-score-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700">
+                0점 (대기)
+              </span>
+              <button type="button" onclick="autoPolishPrompt()" class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-semibold text-[11px] flex items-center gap-1 shadow-md shadow-purple-600/20 active:scale-95 transition-all" title="프롬프트 구조(페르소나, 목표, 제약사항)를 AI 엔지니어링 표준으로 자동 개선">
+                <i data-lucide="wand-2" class="w-3 h-3"></i>
+                <span>✨ AI 자동 다듬기</span>
+              </button>
+            </div>
+          </div>
+          <!-- Progress Bar -->
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div id="prompt-quality-bar" class="h-full bg-slate-700 transition-all duration-300 rounded-full" style="width: 0%"></div>
+          </div>
+          <!-- 4 Criterion Check chips -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px]">
+            <div id="chk-role" class="p-1.5 rounded bg-slate-900 border border-slate-800 text-slate-500 flex items-center gap-1">
+              <i id="icon-chk-role" data-lucide="circle" class="w-3 h-3"></i>
+              <span>페르소나/역할</span>
+            </div>
+            <div id="chk-objective" class="p-1.5 rounded bg-slate-900 border border-slate-800 text-slate-500 flex items-center gap-1">
+              <i id="icon-chk-objective" data-lucide="circle" class="w-3 h-3"></i>
+              <span>명확한 과제</span>
+            </div>
+            <div id="chk-constraints" class="p-1.5 rounded bg-slate-900 border border-slate-800 text-slate-500 flex items-center gap-1">
+              <i id="icon-chk-constraints" data-lucide="circle" class="w-3 h-3"></i>
+              <span>출력 서식/제약</span>
+            </div>
+            <div id="chk-variables" class="p-1.5 rounded bg-slate-900 border border-slate-800 text-slate-500 flex items-center gap-1">
+              <i id="icon-chk-variables" data-lucide="circle" class="w-3 h-3"></i>
+              <span>[변수] 파라미터</span>
+            </div>
+          </div>
+          <p id="prompt-quality-tip" class="text-[11px] text-slate-400 italic">프롬프트를 입력하면 실시간 완성도 평가와 개선 팁이 제공됩니다.</p>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Tags (Comma separated)</label>
+          <input type="text" id="form-tags" placeholder="react, typescript, code-review, architecture" class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <!-- Password Field for Edit/Delete Protection -->
+        <div class="p-3 bg-slate-950/80 border border-cyber-border rounded-xl space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="text-slate-200 font-semibold flex items-center gap-1.5">
+              <i data-lucide="lock" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>비밀번호 (수정/삭제 보호용) *</span>
+            </label>
+            <span class="text-[10px] text-cyan-400 font-medium">필수 입력</span>
+          </div>
+          <p class="text-[11px] text-slate-400">작성 후 글을 수정하거나 삭제할 때 본인 확인용으로 사용됩니다.</p>
+          <div class="relative">
+            <input type="password" id="form-password" required placeholder="수정 및 삭제 시 사용할 비밀번호 입력 (기억하기 쉬운 번호)" autocomplete="new-password" class="w-full pl-3 pr-10 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white font-mono text-xs focus:outline-none focus:border-cyan-400 tracking-wider" />
+            <button type="button" onclick="togglePasswordVisibility('form-password', 'form-password-eye-icon')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 p-1" title="비밀번호 보기/숨기기">
+              <i id="form-password-eye-icon" data-lucide="eye" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('prompt-modal')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold shadow-md shadow-brand-600/30">Save Snippet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. VARIABLE FILLER MODAL (Micro-interaction) -->
+  <div id="variable-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-cyber-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="sliders" class="w-5 h-5 text-cyan-400"></i>
+          <div>
+            <h3 id="var-modal-title" class="font-bold text-sm text-white">Fill Prompt Parameters</h3>
+            <p class="text-[11px] text-slate-400">Customize variables before copying to your AI assistant</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" id="btn-toggle-var-lang" onclick="toggleVariableModalLanguage()" class="px-2.5 py-1 rounded-lg border border-cyan-500/40 hover:border-cyan-400 bg-cyan-950/60 text-cyan-300 hover:text-cyan-100 flex items-center gap-1.5 transition-colors text-xs" title="원문 / 한국어 번역본 전환">
+            <i data-lucide="languages" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span id="lbl-var-lang-btn">한국어로 보기</span>
+          </button>
+          <button onclick="closeModal('variable-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4 text-xs">
+        <div id="variables-input-container" class="space-y-3">
+          <!-- Dynamic parameter inputs rendered here -->
+        </div>
+
+        <div class="pt-2">
+          <label class="block text-slate-300 font-semibold mb-1">Live Compiled Prompt Preview</label>
+          <div id="compiled-prompt-preview" class="p-3 bg-slate-950 border border-cyber-border rounded-lg font-mono text-[11px] text-slate-300 max-h-48 overflow-y-auto whitespace-pre-wrap"></div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('variable-modal')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium">Close</button>
+          <button type="button" id="btn-copy-compiled" class="px-5 py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-brand-600 hover:from-cyan-500 hover:to-brand-500 text-white font-semibold flex items-center gap-1.5 shadow-md">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span>Copy Compiled Prompt</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. IMPORT / EXPORT MODAL (Rule 15) -->
+  <div id="io-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 border-b border-cyber-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="arrow-down-up" class="w-5 h-5 text-purple-400"></i>
+          <h3 class="font-bold text-sm text-white">Export & Import Prompt Library</h3>
+        </div>
+        <button onclick="closeModal('io-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-5 text-xs">
+        <!-- Export Section -->
+        <div>
+          <h4 class="text-slate-200 font-semibold mb-2 flex items-center gap-1.5">
+            <i data-lucide="download" class="w-3.5 h-3.5 text-cyan-400"></i>
+            <span>Export Collection (JSON)</span>
+          </h4>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="exportJSON('all')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-cyber-border text-slate-200 flex flex-col items-center text-center gap-1 transition-colors">
+              <span class="font-semibold text-white">Export All Prompts</span>
+              <span class="text-[10px] text-slate-400">Curated + Custom</span>
+            </button>
+            <button onclick="exportJSON('custom')" class="p-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-cyber-border text-slate-200 flex flex-col items-center text-center gap-1 transition-colors">
+              <span class="font-semibold text-white">Export My Snippets</span>
+              <span class="text-[10px] text-slate-400">Custom created only</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Import Section -->
+        <div>
+          <h4 class="text-slate-200 font-semibold mb-2 flex items-center gap-1.5">
+            <i data-lucide="upload" class="w-3.5 h-3.5 text-purple-400"></i>
+            <span>Import JSON Snippets</span>
+          </h4>
+          <textarea id="import-json-text" rows="4" placeholder="Paste your exported JSON prompt array here..." class="w-full p-2.5 bg-slate-950 border border-cyber-border rounded-lg text-white font-mono text-[11px] focus:outline-none focus:border-brand-500 mb-2"></textarea>
+          <button onclick="importJSON()" class="w-full py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold shadow-md transition-colors flex items-center justify-center gap-1.5">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Import Prompts to Library</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. KEYBOARD SHORTCUTS MODAL (Rule 8) -->
+  <div id="shortcuts-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-sm flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-cyber-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="keyboard" class="w-4 h-4 text-cyan-400"></i>
+          <h3 class="font-bold text-sm text-white">Keyboard Shortcuts</h3>
+        </div>
+        <button onclick="closeModal('shortcuts-modal')" class="text-slate-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="p-5 space-y-3 text-xs">
+        <div class="flex items-center justify-between py-1 border-b border-slate-800">
+          <span class="text-slate-300">Focus search bar</span>
+          <kbd class="px-2 py-1 rounded bg-slate-800 border border-slate-700 font-mono text-slate-300 text-[11px]">/</kbd>
+        </div>
+        <div class="flex items-center justify-between py-1 border-b border-slate-800">
+          <span class="text-slate-300">Create new prompt snippet</span>
+          <kbd class="px-2 py-1 rounded bg-slate-800 border border-slate-700 font-mono text-slate-300 text-[11px]">N</kbd>
+        </div>
+        <div class="flex items-center justify-between py-1 border-b border-slate-800">
+          <span class="text-slate-300">Open AI Prompt Translator</span>
+          <kbd class="px-2 py-1 rounded bg-slate-800 border border-slate-700 font-mono text-slate-300 text-[11px]">T</kbd>
+        </div>
+        <div class="flex items-center justify-between py-1 border-b border-slate-800">
+          <span class="text-slate-300">Toggle favorites filter</span>
+          <kbd class="px-2 py-1 rounded bg-slate-800 border border-slate-700 font-mono text-slate-300 text-[11px]">F</kbd>
+        </div>
+        <div class="flex items-center justify-between py-1">
+          <span class="text-slate-300">Close active modal</span>
+          <kbd class="px-2 py-1 rounded bg-slate-800 border border-slate-700 font-mono text-slate-300 text-[11px]">Esc</kbd>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. AI PROMPT TRANSLATOR & OPTIMIZER MODAL -->
+  <div id="translator-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-cyber-border flex items-center justify-between bg-slate-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300">
+            <i data-lucide="languages" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-white flex items-center gap-2">
+              <span>AI 프롬프트 번역 및 최적화기</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] bg-brand-500/20 text-brand-300 border border-brand-500/30">AI Translator</span>
+            </h3>
+            <p class="text-[11px] text-slate-400">자연어 아이디어를 글로벌 LLM(ChatGPT, Claude, Midjourney)에 최적화된 프롬프트로 변환하거나 다국어로 상호 번역합니다.</p>
+          </div>
+        </div>
+        <button onclick="closeModal('translator-modal')" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs">
+        
+        <!-- Quick Preset Samples -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-[11px] scrollbar-none">
+          <span class="text-slate-400 shrink-0 font-medium">💡 빠른 예시 입력:</span>
+          <button type="button" onclick="loadTranslatorPreset('code')" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">💻 코드 리뷰 & 리팩토링</button>
+          <button type="button" onclick="loadTranslatorPreset('copy')" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">✍️ B2B 마케팅 카피</button>
+          <button type="button" onclick="loadTranslatorPreset('midjourney')" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">🎨 미드저니 8K 인물 사진</button>
+          <button type="button" onclick="loadTranslatorPreset('analysis')" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors shrink-0">📊 비즈니스 전략 기획</button>
+        </div>
+
+        <!-- Controls Row: Source Lang -> Target Lang -> Mode -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 bg-slate-950/70 border border-cyber-border rounded-xl">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1 text-[11px]">출발 언어 (Source)</label>
+            <select id="trans-source-lang" class="w-full px-2.5 py-1.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-cyan-500 cursor-pointer">
+              <option value="auto">🌐 자동 감지 (Auto Detect)</option>
+              <option value="ko" selected>🇰🇷 한국어 (Korean)</option>
+              <option value="en">🇺🇸 영어 (English)</option>
+              <option value="ja">🇯🇵 일본어 (Japanese)</option>
+              <option value="zh">🇨🇳 중국어 (Chinese)</option>
+              <option value="es">🇪🇸 스페인어 (Spanish)</option>
+              <option value="fr">🇫🇷 프랑스어 (French)</option>
+              <option value="de">🇩🇪 독일어 (German)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1 text-[11px]">도착 언어 (Target)</label>
+            <select id="trans-target-lang" class="w-full px-2.5 py-1.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-cyan-500 cursor-pointer">
+              <option value="en" selected>🇺🇸 영어 (English - LLM 최고 성능)</option>
+              <option value="ko">🇰🇷 한국어 (Korean)</option>
+              <option value="ja">🇯🇵 일본어 (Japanese)</option>
+              <option value="zh">🇨🇳 중국어 (Chinese)</option>
+              <option value="es">🇪🇸 스페인어 (Spanish)</option>
+              <option value="fr">🇫🇷 프랑스어 (French)</option>
+              <option value="de">🇩🇪 독일어 (German)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1 text-[11px]">변환 스타일 / 모드</label>
+            <select id="trans-mode" class="w-full px-2.5 py-1.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-cyan-500 cursor-pointer">
+              <option value="optimize" selected>⚡ AI 프롬프트 엔지니어링 최적화</option>
+              <option value="direct">📖 직관적 자연어 번역 (Direct)</option>
+              <option value="midjourney">🎨 미드저니/Vision 스타일</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dual Text Panes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Left: Input Area -->
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-slate-300 text-[11px]">원본 프롬프트 텍스트</span>
+              <span id="trans-char-count" class="text-[10px] text-slate-500 font-mono">0자</span>
+            </div>
+            <textarea id="trans-input-text" rows="8" placeholder="번역하거나 최적화할 프롬프트 아이디어를 입력하세요...&#10;예: '전문 소프트웨어 엔지니어로서 내 리액트 컴포넌트를 검토하고 렌더링 최적화 팁을 알려줘'" class="w-full p-3 bg-slate-900 border border-cyber-border rounded-xl text-white text-xs focus:outline-none focus:border-cyan-500 leading-relaxed font-sans"></textarea>
+            <div class="flex items-center justify-between pt-1">
+              <button type="button" onclick="swapTranslatorLanguages()" class="text-slate-400 hover:text-cyan-300 flex items-center gap-1 text-[11px] transition-colors">
+                <i data-lucide="arrow-left-right" class="w-3.5 h-3.5"></i>
+                <span>출발/도착 언어 맞바꾸기</span>
+              </button>
+              <button type="button" onclick="clearTranslatorInput()" class="text-slate-400 hover:text-rose-300 text-[11px] transition-colors">텍스트 지우기</button>
+            </div>
+          </div>
+
+          <!-- Right: Output Area -->
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-slate-300 text-[11px] flex items-center gap-1.5">
+                <span>번역 및 최적화 결과</span>
+                <span id="trans-status-badge" class="hidden px-2 py-0.2 rounded text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-500/30">완료</span>
+              </span>
+              <span id="trans-result-count" class="text-[10px] text-slate-500 font-mono">0자</span>
+            </div>
+            <div id="trans-output-text" class="w-full p-3 bg-slate-950 border border-cyber-border rounded-xl text-slate-200 text-xs leading-relaxed font-mono min-h-[160px] max-h-64 overflow-y-auto whitespace-pre-wrap select-text">
+              <span class="text-slate-500 italic">번역 버튼을 누르면 최적화된 결과 프롬프트가 이곳에 출력됩니다.</span>
+            </div>
+            <!-- Action row for result -->
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button type="button" id="btn-copy-trans" onclick="copyTranslatedResult()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1.5 transition-colors active:scale-95">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span id="btn-copy-trans-text">결과 복사</span>
+              </button>
+              <button type="button" onclick="saveTranslatedAsSnippet()" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-600/20 transition-all active:scale-95">
+                <i data-lucide="bookmark-plus" class="w-3.5 h-3.5"></i>
+                <span>내 스니펫에 저장</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Run Button -->
+        <div class="flex items-center justify-between pt-2 border-t border-cyber-border">
+          <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-cyan-400 shrink-0"></i>
+            <span>번역된 프롬프트의 [변수]는 복사 시 자동으로 추출 및 커스터마이징 가능합니다.</span>
+          </div>
+          <button type="button" id="btn-run-translate" onclick="executeTranslation()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 via-brand-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/25 flex items-center gap-2 transition-all active:scale-95">
+            <i data-lucide="wand-2" class="w-4 h-4"></i>
+            <span id="btn-run-translate-text">번역 및 최적화 실행</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. FEEDBACK MODAL (Rule 14) -->
+  <div id="feedback-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-md flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-cyber-border flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="message-square" class="w-4 h-4 text-brand-400"></i>
+          <h3 class="font-bold text-sm text-white">Feedback & Support</h3>
+        </div>
+        <button onclick="closeModal('feedback-modal')" class="text-slate-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <form id="feedback-form" onsubmit="submitFeedback(event)" class="p-5 space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Feedback Category</label>
+          <select class="w-full px-3 py-2 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none">
+            <option>Suggest a New Prompt Snippet</option>
+            <option>Report an Issue / Bug</option>
+            <option>Feature Request</option>
+            <option>General Feedback</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Your Message</label>
+          <textarea rows="4" required placeholder="Tell us how we can improve or share your favorite prompt idea..." class="w-full p-2.5 bg-slate-900 border border-cyber-border rounded-lg text-white focus:outline-none"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('feedback-modal')" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 font-medium">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-semibold">Send Feedback</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. PASSWORD CONFIRMATION MODAL (글 수정 / 삭제 비밀번호 확인) -->
+  <div id="password-confirm-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-md flex flex-col shadow-2xl overflow-hidden">
+      <!-- Header -->
+      <div class="px-5 py-4 border-b border-cyber-border flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div id="pw-confirm-icon-wrap" class="w-8 h-8 rounded-lg bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+            <i data-lucide="lock" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 id="pw-confirm-modal-title" class="font-bold text-sm text-white">비밀번호 확인</h3>
+            <p id="pw-confirm-modal-subtitle" class="text-[11px] text-slate-400">작성 시 설정한 비밀번호를 입력해주세요</p>
+          </div>
+        </div>
+        <button onclick="closeModal('password-confirm-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form id="password-confirm-form" onsubmit="handlePasswordConfirmSubmit(event)" class="p-5 space-y-4 text-xs">
+        <input type="hidden" id="pw-confirm-prompt-id" value="" />
+        <input type="hidden" id="pw-confirm-action" value="edit" />
+
+        <!-- Target Snippet Info Preview -->
+        <div class="bg-slate-950/70 border border-cyber-border rounded-xl p-3 flex items-start gap-3">
+          <div id="pw-confirm-action-badge" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-wider mt-0.5">
+            수정 확인
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 id="pw-confirm-target-title" class="text-white font-semibold text-xs truncate">스니펫 제목</h4>
+            <p id="pw-confirm-target-desc" class="text-slate-400 text-[11px] truncate mt-0.5">스니펫 설명</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1.5 flex items-center justify-between">
+            <span>비밀번호 입력</span>
+            <span class="text-[10px] text-slate-400 font-normal">글 작성 시 입력한 비밀번호</span>
+          </label>
+          <div class="relative">
+            <input type="password" id="pw-confirm-input" required placeholder="비밀번호를 입력하세요" autocomplete="current-password" class="w-full pl-3 pr-10 py-2.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-cyan-400 font-mono tracking-wider" />
+            <button type="button" onclick="togglePasswordVisibility('pw-confirm-input', 'pw-confirm-eye-icon')" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 p-1" title="비밀번호 보기/숨기기">
+              <i id="pw-confirm-eye-icon" data-lucide="eye" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+          <p id="pw-confirm-error" class="hidden text-rose-400 text-[11px] mt-1.5 flex items-center gap-1">
+            <i data-lucide="alert-circle" class="w-3 h-3"></i>
+            <span>비밀번호가 일치하지 않습니다. 다시 확인해주세요.</span>
+          </p>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-cyber-border">
+          <button type="button" onclick="closeModal('password-confirm-modal')" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium">취소</button>
+          <button type="submit" id="pw-confirm-submit-btn" class="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold flex items-center gap-1.5 shadow-md shadow-cyan-600/30 active:scale-95 transition-all">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span id="pw-confirm-submit-btn-text">확인</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. AI PLAYGROUND MODAL (AI 즉석 테스트 실행기) -->
+  <div id="playground-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="px-5 py-4 border-b border-cyber-border flex items-center justify-between bg-slate-900/70">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-600 to-purple-600 flex items-center justify-center text-white shadow-md shadow-cyan-600/30">
+            <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-white flex items-center gap-2">
+              <span>AI 즉석 실행 테스트실</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-semibold">Playground</span>
+            </h3>
+            <p class="text-[11px] text-slate-400">외부 AI로 복사하기 전, 앱 안에서 프롬프트 실행 결과와 품질을 실시간 사전 테스트하세요.</p>
+          </div>
+        </div>
+        <button onclick="closeModal('playground-modal')" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs">
+        
+        <!-- Controls Bar -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 bg-slate-950/70 border border-cyber-border rounded-xl">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1 text-[11px] flex items-center gap-1">
+              <i data-lucide="bot" class="w-3.5 h-3.5 text-cyan-400"></i>
+              <span>테스트 대상 모델</span>
+            </label>
+            <select id="pg-model-select" class="w-full px-2.5 py-1.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-cyan-500 cursor-pointer">
+              <option value="ChatGPT (GPT-4o)" selected>ChatGPT (GPT-4o - OpenAI)</option>
+              <option value="Claude 3.5 Sonnet">Claude 3.5 Sonnet (Anthropic)</option>
+              <option value="Gemini 2.0 Flash">Gemini 2.0 Flash (Google)</option>
+              <option value="DeepSeek R1">DeepSeek R1 (Reasoning)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1 text-[11px] flex items-center gap-1">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>응답 스타일 / 모드</span>
+            </label>
+            <select id="pg-style-select" class="w-full px-2.5 py-1.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-purple-500 cursor-pointer">
+              <option value="detailed" selected>🎯 정밀 분석 & 단계별 솔루션</option>
+              <option value="code">💻 실무 코드 중심 & 리팩토링</option>
+              <option value="creative">🚀 창의적 카피 & 아이디어</option>
+              <option value="concise">⚡ 핵심 요약 & 불릿 포인트</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1 text-[11px] flex items-center gap-1">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-brand-400"></i>
+              <span>실제 외부 AI 새 탭 바로가기</span>
+            </label>
+            <div class="flex items-center gap-1.5 pt-0.5">
+              <button type="button" onclick="launchDirectAI('chatgpt')" class="flex-1 py-1.5 px-2 bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 hover:border-emerald-400 text-emerald-300 rounded-lg text-[11px] font-semibold transition-colors flex items-center justify-center gap-1" title="클립보드 복사 후 ChatGPT 새 창 열기">
+                <span>ChatGPT</span>
+              </button>
+              <button type="button" onclick="launchDirectAI('claude')" class="flex-1 py-1.5 px-2 bg-slate-900 hover:bg-slate-800 border border-amber-500/40 hover:border-amber-400 text-amber-300 rounded-lg text-[11px] font-semibold transition-colors flex items-center justify-center gap-1" title="클립보드 복사 후 Claude 새 창 열기">
+                <span>Claude</span>
+              </button>
+              <button type="button" onclick="launchDirectAI('gemini')" class="flex-1 py-1.5 px-2 bg-slate-900 hover:bg-slate-800 border border-blue-500/40 hover:border-blue-400 text-blue-300 rounded-lg text-[11px] font-semibold transition-colors flex items-center justify-center gap-1" title="클립보드 복사 후 Gemini 새 창 열기">
+                <span>Gemini</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompt & Output Split Panes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Left: Prompt Being Tested -->
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-slate-300 text-[11px] flex items-center gap-1">
+                <i data-lucide="terminal" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>실행할 프롬프트 (입력/수정 가능)</span>
+              </span>
+              <span id="pg-prompt-char-count" class="text-[10px] text-slate-500 font-mono">0자</span>
+            </div>
+            <textarea id="pg-prompt-input" rows="9" placeholder="테스트할 프롬프트를 입력하세요..." class="w-full p-3 bg-slate-900 border border-cyber-border rounded-xl text-white font-mono text-xs focus:outline-none focus:border-cyan-500 leading-relaxed"></textarea>
+            
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="loadSampleToPlayground('code')" class="text-[11px] text-slate-400 hover:text-cyan-300 transition-colors">코드 리뷰 예제</button>
+                <span class="text-slate-600">|</span>
+                <button type="button" onclick="loadSampleToPlayground('marketing')" class="text-[11px] text-slate-400 hover:text-cyan-300 transition-colors">마케팅 예제</button>
+              </div>
+              <button type="button" onclick="document.getElementById('pg-prompt-input').value = ''; updatePgCharCount();" class="text-slate-400 hover:text-rose-300 text-[11px] transition-colors">비우기</button>
+            </div>
+          </div>
+
+          <!-- Right: AI Live Test Result -->
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold text-slate-300 text-[11px] flex items-center gap-1.5">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>가상 AI 실행 결과</span>
+                <span id="pg-status-badge" class="px-2 py-0.2 rounded text-[10px] bg-slate-800 text-slate-400 border border-slate-700 font-mono">대기 중</span>
+              </span>
+              <div id="pg-metrics" class="hidden text-[10px] text-slate-400 font-mono flex items-center gap-2">
+                <span id="pg-metric-time" class="text-cyan-300">⚡ 320ms</span>
+                <span id="pg-metric-tokens" class="text-purple-300">🔤 184 tok</span>
+              </div>
+            </div>
+
+            <!-- Output Screen with Typing Animation -->
+            <div id="pg-output-display" class="w-full p-3.5 bg-slate-950 border border-cyber-border rounded-xl text-slate-200 text-xs leading-relaxed font-sans min-h-[190px] max-h-72 overflow-y-auto whitespace-pre-wrap select-text border-cyan-500/30">
+              <span class="text-slate-500 italic">왼쪽에서 프롬프트를 확인하고 하단의 '▶️ 테스트 실행' 버튼을 누르면 AI 응답이 실시간 스트리밍으로 출력됩니다.</span>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-1">
+              <button type="button" id="btn-copy-pg-output" onclick="copyPlaygroundOutput()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1.5 transition-colors active:scale-95">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span id="btn-copy-pg-output-text">출력 결과 복사</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="flex items-center justify-between pt-2 border-t border-cyber-border">
+          <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+            <i data-lucide="info" class="w-3.5 h-3.5 text-cyan-400 shrink-0"></i>
+            <span>실행 전 [변수]를 실제 값으로 치환하여 테스트하면 가장 정확한 결과를 확인할 수 있습니다.</span>
+          </div>
+          <button type="button" id="btn-run-playground" onclick="executePlaygroundTest()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 via-brand-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white text-xs font-bold shadow-lg shadow-cyan-600/30 flex items-center gap-2 transition-all active:scale-95">
+            <i data-lucide="play" class="w-4 h-4 fill-white"></i>
+            <span id="btn-run-playground-text">▶️ AI 프롬프트 즉석 테스트 실행</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. PROMPT VERSION HISTORY MODAL (프롬프트 버전 관리 및 히스토리) -->
+  <div id="history-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm" role="dialog" aria-modal="true">
+    <div class="bg-cyber-surface border border-cyber-border rounded-2xl w-full max-w-lg flex flex-col shadow-2xl overflow-hidden max-h-[85vh]">
+      <div class="px-5 py-4 border-b border-cyber-border flex items-center justify-between bg-slate-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-purple-950/80 border border-purple-500/40 flex items-center justify-center text-purple-400">
+            <i data-lucide="history" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-white">프롬프트 수정 버전 기록</h3>
+            <p id="history-target-title" class="text-[11px] text-slate-400 truncate max-w-xs">스니펫 제목</p>
+          </div>
+        </div>
+        <button onclick="closeModal('history-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-3 text-xs" id="history-list-container">
+        <!-- Dynamically rendered revision list -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE BOTTOM NAVIGATION (Quick Action Bar) -->
+  <nav id="mobile-bottom-nav" class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-cyber-border py-1.5 px-3 flex items-center justify-around shadow-2xl safe-area-bottom">
+    <button onclick="mobileNavAction('all')" class="flex flex-col items-center gap-1 py-1 px-2 text-slate-300 hover:text-cyan-400 active:scale-95 transition-all">
+      <i data-lucide="compass" class="w-4 h-4 text-cyan-400"></i>
+      <span class="text-[10px] font-medium">탐색</span>
+    </button>
+    <button onclick="openModal('translator-modal')" class="flex flex-col items-center gap-1 py-1 px-2 text-slate-300 hover:text-cyan-400 active:scale-95 transition-all">
+      <i data-lucide="languages" class="w-4 h-4 text-brand-400"></i>
+      <span class="text-[10px] font-medium">AI 번역기</span>
+    </button>
+    <button onclick="openNewPromptModal()" class="flex flex-col items-center gap-1 py-1 px-3.5 -mt-3.5 bg-gradient-to-tr from-brand-600 to-cyan-500 rounded-full text-white shadow-lg shadow-cyan-500/30 active:scale-95 transition-all border-2 border-slate-900">
+      <i data-lucide="plus" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">등록</span>
+    </button>
+    <button onclick="mobileNavAction('favs')" class="flex flex-col items-center gap-1 py-1 px-2 text-slate-300 hover:text-amber-400 active:scale-95 transition-all">
+      <i data-lucide="star" class="w-4 h-4 text-amber-400"></i>
+      <span class="text-[10px] font-medium">즐겨찾기</span>
+    </button>
+    <button onclick="openPlaygroundModal()" class="flex flex-col items-center gap-1 py-1 px-2 text-slate-300 hover:text-purple-400 active:scale-95 transition-all">
+      <i data-lucide="play-circle" class="w-4 h-4 text-purple-400"></i>
+      <span class="text-[10px] font-medium">테스트실</span>
+    </button>
+  </nav>
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ==================== VANILLA JAVASCRIPT APP LOGIC ==================== -->
+  <script>
+    /* ==========================================================================
+       AI PROMPT & SNIPPET SHARE STUDIO - PURE JAVASCRIPT APPLICATION CORE
+       ========================================================================== */
+
+    // 1. 20-LANGUAGE DICTIONARY (Rule 1)
+    const i18n = {
+      en: {
+        studioTag: "AI PROMPT REPOSITORY",
+        heroBadge: "Curated AI Snippets for ChatGPT, Claude & Midjourney",
+        heroHeading: "High-Performance AI Prompts & Snippets",
+        heroSubtitle: "Browse, search, fill dynamic parameters, and 1-click copy battle-tested system prompts. Save your custom library locally or export to JSON.",
+        statPrompts: "Prompts",
+        statCustom: "Custom",
+        statFavs: "Favorites",
+        searchPlaceholder: "Search prompts by title, keywords, model, or tags... (Press '/' to search)",
+        newPrompt: "New Prompt",
+        sortLabel: "Sort:",
+        all: "All",
+        favorites: "Favorites",
+        mySnippets: "My Snippets",
+        copyPrompt: "Copy Prompt",
+        copied: "Copied!",
+        fillVars: "Fill Variables",
+        shareLink: "Share Link",
+        emptyTitle: "No matching prompts found",
+        emptyDesc: "Try adjusting your search keywords, resetting category filters, or create a brand new prompt snippet.",
+        toastCopied: "Prompt copied to clipboard!",
+        toastLinkCopied: "Share link copied to clipboard!",
+        btnTranslator: "Prompt Translator",
+        translatePrompt: "Translate",
+        viewOriginal: "Original",
+        translateAll: "Translate to Korean",
+        viewAllOriginal: "View Original",
+        toastTranslating: "Translating prompt...",
+        toastTranslated: "Translation completed!",
+        toastTranslatedCopied: "Translated prompt copied!"
+      },
+      ko: {
+        studioTag: "AI 프롬프트 저장소",
+        heroBadge: "ChatGPT, Claude, Midjourney를 위한 검증된 AI 스니펫",
+        heroHeading: "고성능 AI 프롬프트 & 스니펫 공유 스튜디오",
+        heroSubtitle: "실전 검증된 시스템 프롬프트를 검색하고 동적 파라미터를 입력하여 한 번의 클릭으로 복사하세요.",
+        statPrompts: "프롬프트",
+        statCustom: "커스텀",
+        statFavs: "즐겨찾기",
+        searchPlaceholder: "키워드, 모델, 태그로 검색... ('/' 키로 포커스)",
+        newPrompt: "새 프롬프트",
+        sortLabel: "정렬:",
+        all: "전체",
+        favorites: "즐겨찾기",
+        mySnippets: "내 스니펫",
+        copyPrompt: "프롬프트 복사",
+        copied: "복사 완료!",
+        fillVars: "변수 채우기",
+        shareLink: "링크 공유",
+        emptyTitle: "일치하는 프롬프트가 없습니다",
+        emptyDesc: "검색어를 조정하거나 필터를 초기화해보세요.",
+        toastCopied: "프롬프트가 클립보드에 복사되었습니다!",
+        toastLinkCopied: "공유 링크가 복사되었습니다!",
+        btnTranslator: "프롬프트 번역기",
+        translatePrompt: "한국어 번역",
+        viewOriginal: "원문 보기",
+        translateAll: "한국어 번역 보기",
+        viewAllOriginal: "원문 전체 보기",
+        toastTranslating: "프롬프트를 번역하고 있습니다...",
+        toastTranslated: "번역이 완료되었습니다!",
+        toastTranslatedCopied: "번역된 프롬프트가 복사되었습니다!"
+      },
+      ja: {
+        studioTag: "AI プロンプトリポジトリ",
+        heroBadge: "ChatGPT・Claude・Midjourney向け厳選プロンプト",
+        heroHeading: "高性能 AI プロンプト＆スニペット共有スタジオ",
+        heroSubtitle: "実戦で検証された高品質プロンプトを検索し、パラメータを埋めてワンクリックでコピーできます。",
+        statPrompts: "プロンプト",
+        statCustom: "カスタム",
+        statFavs: "お気に入り",
+        searchPlaceholder: "キーワード・モデル・タグで検索... ('/'で検索)",
+        newPrompt: "新規プロンプト",
+        sortLabel: "並び替え:",
+        all: "すべて",
+        favorites: "お気に入り",
+        mySnippets: "マイプロンプト",
+        copyPrompt: "プロンプトをコピー",
+        copied: "コピー完了!",
+        fillVars: "変数を入力",
+        shareLink: "リンクを共有",
+        emptyTitle: "一致するプロンプトがありません",
+        emptyDesc: "キーワードの調整やフィルターの解除をお試しください。",
+        toastCopied: "プロンプトをクリップボードにコピーしました！",
+        toastLinkCopied: "共有リンクをコピーしました！"
+      },
+      zh: {
+        studioTag: "AI 提示词共享库",
+        heroBadge: "精选适用 ChatGPT、Claude 与 Midjourney 的实战提示词",
+        heroHeading: "高性能 AI 提示词与代码片段共享工坊",
+        heroSubtitle: "浏览、搜索、实时填充参数，一键复制经过实战检验的高效系统级提示词，支持本地持久化与 JSON 导入导出。",
+        statPrompts: "提示词",
+        statCustom: "自定义",
+        statFavs: "收藏夹",
+        searchPlaceholder: "按标题、模型或标签搜索... (按 '/' 聚焦)",
+        newPrompt: "新建提示词",
+        sortLabel: "排序:",
+        all: "全部",
+        favorites: "收藏",
+        mySnippets: "我的片段",
+        copyPrompt: "复制提示词",
+        copied: "已复制!",
+        fillVars: "填充变量",
+        shareLink: "分享链接",
+        emptyTitle: "未找到匹配的提示词",
+        emptyDesc: "请尝试更改搜索词或重置筛选条件。",
+        toastCopied: "提示词已复制到剪贴板！",
+        toastLinkCopied: "分享链接已复制！"
+      },
+      es: {
+        studioTag: "REPOSITORIO DE PROMPTS AI",
+        heroBadge: "Snippets de IA seleccionados para ChatGPT, Claude y Midjourney",
+        heroHeading: "Prompts y Snippets de IA de Alto Rendimiento",
+        heroSubtitle: "Explora, personaliza variables y copia con 1 clic prompts de sistema probados en producción.",
+        statPrompts: "Prompts",
+        statCustom: "Personalizados",
+        statFavs: "Favoritos",
+        searchPlaceholder: "Buscar prompts por título, modelo o etiquetas... (Pulsa '/' para buscar)",
+        newPrompt: "Nuevo Prompt",
+        sortLabel: "Ordenar:",
+        all: "Todos",
+        favorites: "Favoritos",
+        mySnippets: "Mis Snippets",
+        copyPrompt: "Copiar Prompt",
+        copied: "¡Copiado!",
+        fillVars: "Rellenar Variables",
+        shareLink: "Compartir Enlace",
+        emptyTitle: "No se encontraron prompts coincidentes",
+        emptyDesc: "Intenta cambiar tus términos de búsqueda o crear un nuevo snippet.",
+        toastCopied: "¡Prompt copiado al portapapeles!",
+        toastLinkCopied: "¡Enlace compartido copiado!"
+      },
+      fr: {
+        studioTag: "RÉPERTOIRE DE PROMPTS IA",
+        heroBadge: "Snippets IA éprouvés pour ChatGPT, Claude et Midjourney",
+        heroHeading: "Prompts & Snippets IA Haute Performance",
+        heroSubtitle: "Parcourez, personnalisez les paramètres et copiez en un clic des invites testées en conditions réelles.",
+        statPrompts: "Prompts",
+        statCustom: "Personnalisés",
+        statFavs: "Favoris",
+        searchPlaceholder: "Rechercher par titre, modèle ou tags... (Touche '/')",
+        newPrompt: "Nouveau Prompt",
+        sortLabel: "Trier:",
+        all: "Tous",
+        favorites: "Favoris",
+        mySnippets: "Mes Snippets",
+        copyPrompt: "Copier le prompt",
+        copied: "Copié !",
+        fillVars: "Remplir variables",
+        shareLink: "Partager le lien",
+        emptyTitle: "Aucun prompt trouvé",
+        emptyDesc: "Essayez de modifier votre recherche ou ajoutez un nouveau snippet.",
+        toastCopied: "Prompt copié dans le presse-papier !",
+        toastLinkCopied: "Lien partagé copié !"
+      },
+      de: {
+        studioTag: "KI-PROMPT REPOSITORIUM",
+        heroBadge: "Kuratierte KI-Snippets für ChatGPT, Claude & Midjourney",
+        heroHeading: "Hochleistungs-KI-Prompts & Snippets",
+        heroSubtitle: "Durchsuchen, Variablen anpassen und mit einem Klick kampferprobte System-Prompts kopieren.",
+        statPrompts: "Prompts",
+        statCustom: "Eigene",
+        statFavs: "Favoriten",
+        searchPlaceholder: "Prompts nach Begriff, Modell oder Tags suchen... ('/' drücken)",
+        newPrompt: "Neuer Prompt",
+        sortLabel: "Sortieren:",
+        all: "Alle",
+        favorites: "Favoriten",
+        mySnippets: "Meine Snippets",
+        copyPrompt: "Prompt kopieren",
+        copied: "Kopiert!",
+        fillVars: "Variablen füllen",
+        shareLink: "Link teilen",
+        emptyTitle: "Keine passenden Prompts gefunden",
+        emptyDesc: "Versuchen Sie andere Suchbegriffe oder setzen Sie die Filter zurück.",
+        toastCopied: "Prompt in Zwischenablage kopiert!",
+        toastLinkCopied: "Teilungs-Link kopiert!"
+      },
+      pt: {
+        studioTag: "REPOSITÓRIO DE PROMPTS DE IA",
+        heroBadge: "Snippets de IA para ChatGPT, Claude e Midjourney",
+        heroHeading: "Prompts e Snippets de IA de Alta Performance",
+        heroSubtitle: "Navegue, pesquise, preencha parâmetros dinâmicos e copie com 1 clique.",
+        statPrompts: "Prompts",
+        statCustom: "Customizados",
+        statFavs: "Favoritos",
+        searchPlaceholder: "Pesquise por título, modelo ou tags... (Pressione '/')",
+        newPrompt: "Novo Prompt",
+        sortLabel: "Ordenar:",
+        all: "Todos",
+        favorites: "Favoritos",
+        mySnippets: "Meus Snippets",
+        copyPrompt: "Copiar Prompt",
+        copied: "Copiado!",
+        fillVars: "Preencher Variáveis",
+        shareLink: "Compartilhar Link",
+        emptyTitle: "Nenhum prompt encontrado",
+        emptyDesc: "Tente ajustar sua busca ou crie um novo prompt.",
+        toastCopied: "Prompt copiado para a área de transferência!",
+        toastLinkCopied: "Link de compartilhamento copiado!"
+      },
+      ru: {
+        studioTag: "РЕПОЗИТОРИЙ ИИ-ПРОМПТОВ",
+        heroBadge: "Проверенные промпты для ChatGPT, Claude и Midjourney",
+        heroHeading: "Высокоэффективные ИИ-промпты и сниппеты",
+        heroSubtitle: "Ищите, настраивайте переменные и копируйте проверенные системные промпты в один клик.",
+        statPrompts: "Промпты",
+        statCustom: "Свои",
+        statFavs: "Избранное",
+        searchPlaceholder: "Поиск по ключевым словам, моделям... (Нажмите '/')",
+        newPrompt: "Создать промпт",
+        sortLabel: "Сортировка:",
+        all: "Все",
+        favorites: "Избранное",
+        mySnippets: "Мои сниппеты",
+        copyPrompt: "Скопировать",
+        copied: "Скопировано!",
+        fillVars: "Заполнить переменные",
+        shareLink: "Поделиться",
+        emptyTitle: "Промпты не найдены",
+        emptyDesc: "Попробуйте изменить запрос или сбросить фильтры.",
+        toastCopied: "Промпт скопирован в буфер обмена!",
+        toastLinkCopied: "Ссылка скопирована!"
+      },
+      it: {
+        studioTag: "REPOSITORY DI PROMPT IA",
+        heroBadge: "Snippet IA per ChatGPT, Claude e Midjourney",
+        heroHeading: "Prompt & Snippet IA ad Alte Prestazioni",
+        heroSubtitle: "Cerca, personalizza le variabili e copia con 1 click prompt testati.",
+        statPrompts: "Prompt",
+        statCustom: "Personalizzati",
+        statFavs: "Preferiti",
+        searchPlaceholder: "Cerca per titolo, modello o tag... (Premi '/')",
+        newPrompt: "Nuovo Prompt",
+        sortLabel: "Ordina:",
+        all: "Tutti",
+        favorites: "Preferiti",
+        mySnippets: "I miei snippet",
+        copyPrompt: "Copia Prompt",
+        copied: "Copiato!",
+        fillVars: "Compila Variabili",
+        shareLink: "Condividi Link",
+        emptyTitle: "Nessun prompt trovato",
+        emptyDesc: "Prova a modificare i filtri o crea un nuovo snippet.",
+        toastCopied: "Prompt copiato negli appunti!",
+        toastLinkCopied: "Link di condivisione copiato!"
+      },
+      vi: {
+        studioTag: "KHO PROMPT AI CHUYÊN NGHIỆP",
+        heroBadge: "Prompt chọn lọc cho ChatGPT, Claude & Midjourney",
+        heroHeading: "Kho Prompt & Đoạn Mã AI Hiệu Suất Cao",
+        heroSubtitle: "Tìm kiếm, điền biến số và sao chép 1 chạm các prompt chất lượng cao.",
+        statPrompts: "Prompt",
+        statCustom: "Tự tạo",
+        statFavs: "Yêu thích",
+        searchPlaceholder: "Tìm kiếm theo từ khóa, mô hình... (Nhấn '/')",
+        newPrompt: "Tạo Prompt Mới",
+        sortLabel: "Sắp xếp:",
+        all: "Tất cả",
+        favorites: "Yêu thích",
+        mySnippets: "Snippet của tôi",
+        copyPrompt: "Sao chép Prompt",
+        copied: "Đã sao chép!",
+        fillVars: "Điền tham số",
+        shareLink: "Chia sẻ liên kết",
+        emptyTitle: "Không tìm thấy prompt phù hợp",
+        emptyDesc: "Hãy thử từ khóa khác hoặc tạo prompt mới.",
+        toastCopied: "Đã sao chép prompt vào bộ nhớ tạm!",
+        toastLinkCopied: "Đã sao chép liên kết chia sẻ!"
+      },
+      th: {
+        studioTag: "คลังพร้อมท์ AI ประสิทธิภาพสูง",
+        heroBadge: "พร้อมท์ที่คัดสรรสำหรับ ChatGPT, Claude และ Midjourney",
+        heroHeading: "สตูดิโอแบ่งปันพร้อมท์และสนิปเป็ต AI",
+        heroSubtitle: "ค้นหา ปรับแต่งตัวแปร และคัดลอกในคลิกเดียวเพื่อใช้งานกับ AI ชั้นนำ",
+        statPrompts: "พร้อมท์",
+        statCustom: "กำหนดเอง",
+        statFavs: "รายการโปรด",
+        searchPlaceholder: "ค้นหาด้วยคำสำคัญ หรือแท็ก... (กด '/')",
+        newPrompt: "สร้างพร้อมท์ใหม่",
+        sortLabel: "เรียงตาม:",
+        all: "ทั้งหมด",
+        favorites: "รายการโปรด",
+        mySnippets: "ของฉัน",
+        copyPrompt: "คัดลอกพร้อมท์",
+        copied: "คัดลอกแล้ว!",
+        fillVars: "กรอกตัวแปร",
+        shareLink: "แชร์ลิงก์",
+        emptyTitle: "ไม่พบพร้อมท์ที่ตรงกัน",
+        emptyDesc: "ลองเปลี่ยนคำค้นหาหรือสร้างสนิปเป็ตใหม่",
+        toastCopied: "คัดลอกพร้อมท์แล้ว!",
+        toastLinkCopied: "คัดลอกลิงก์แล้ว!"
+      },
+      id: {
+        studioTag: "REPOSITORI PROMPT AI",
+        heroBadge: "Snippet AI pilihan untuk ChatGPT, Claude & Midjourney",
+        heroHeading: "Studio Berbagi Prompt & Snippet AI",
+        heroSubtitle: "Jelajahi, isi parameter dinamis, dan salin prompt siap pakai dalam 1 klik.",
+        statPrompts: "Prompt",
+        statCustom: "Kustom",
+        statFavs: "Favorit",
+        searchPlaceholder: "Cari prompt berdasarkan judul atau tag... (Tekan '/')",
+        newPrompt: "Prompt Baru",
+        sortLabel: "Urutkan:",
+        all: "Semua",
+        favorites: "Favorit",
+        mySnippets: "Snippet Saya",
+        copyPrompt: "Salin Prompt",
+        copied: "Tersalin!",
+        fillVars: "Isi Variabel",
+        shareLink: "Bagi Tautan",
+        emptyTitle: "Tidak ada prompt yang cocok",
+        emptyDesc: "Coba sesuaikan kata kunci pencarian Anda.",
+        toastCopied: "Prompt disalin ke papan klip!",
+        toastLinkCopied: "Tautan berbagi disalin!"
+      },
+      tr: {
+        studioTag: "YAPAY ZEKA PROMPT REPO",
+        heroBadge: "ChatGPT, Claude ve Midjourney için optimize edilmiş promptlar",
+        heroHeading: "Yüksek Performanslı Yapay Zeka Prompt Stüdyosu",
+        heroSubtitle: "Arama yapın, değişkenleri doldurun ve tek tıkla kopyalayın.",
+        statPrompts: "Promptlar",
+        statCustom: "Özel",
+        statFavs: "Favoriler",
+        searchPlaceholder: "Başlık, model veya etiket ile ara... ('/' tuşuna bas)",
+        newPrompt: "Yeni Prompt",
+        sortLabel: "Sırala:",
+        all: "Tümü",
+        favorites: "Favoriler",
+        mySnippets: "Benimkiler",
+        copyPrompt: "Promptu Kopyala",
+        copied: "Kopyalandı!",
+        fillVars: "Değişkenleri Doldur",
+        shareLink: "Bağlantıyı Paylaş",
+        emptyTitle: "Eşleşen prompt bulunamadı",
+        emptyDesc: "Arama terimlerinizi değiştirmeyi deneyin.",
+        toastCopied: "Prompt panoya kopyalandı!",
+        toastLinkCopied: "Paylaşım linki kopyalandı!"
+      },
+      pl: {
+        studioTag: "REPOZYTORIUM PROMPTÓW AI",
+        heroBadge: "Sprawdzone prompty dla ChatGPT, Claude i Midjourney",
+        heroHeading: "Wysokowydajne Prompty i Snippety AI",
+        heroSubtitle: "Przeglądaj, uzupełniaj parametry i kopiuj przetestowane prompty jednym kliknięciem.",
+        statPrompts: "Prompty",
+        statCustom: "Własne",
+        statFavs: "Ulubione",
+        searchPlaceholder: "Szukaj po tytule, modelu, tagach... (Wciśnij '/')",
+        newPrompt: "Nowy Prompt",
+        sortLabel: "Sortuj:",
+        all: "Wszystkie",
+        favorites: "Ulubione",
+        mySnippets: "Moje Snippety",
+        copyPrompt: "Kopiuj Prompt",
+        copied: "Skopiowano!",
+        fillVars: "Wypełnij Zmienne",
+        shareLink: "Kopiuj Link",
+        emptyTitle: "Brak pasujących promptów",
+        emptyDesc: "Spróbuj zmienić zapytanie lub zresetować filtry.",
+        toastCopied: "Prompt skopiowany do schowka!",
+        toastLinkCopied: "Link skopiowany!"
+      },
+      nl: {
+        studioTag: "AI PROMPT ARCHIEF",
+        heroBadge: "Bewezen AI snippets voor ChatGPT, Claude & Midjourney",
+        heroHeading: "Hoogwaardige AI Prompts & Snippets Studio",
+        heroSubtitle: "Zoek, vul variabelen in en kopieer geteste prompts met 1 klik.",
+        statPrompts: "Prompts",
+        statCustom: "Aangepast",
+        statFavs: "Favorieten",
+        searchPlaceholder: "Zoek op titel, model of tags... (Druk '/')",
+        newPrompt: "Nieuwe Prompt",
+        sortLabel: "Sorteren:",
+        all: "Alles",
+        favorites: "Favorieten",
+        mySnippets: "Mijn Snippets",
+        copyPrompt: "Kopieer Prompt",
+        copied: "Gekopieerd!",
+        fillVars: "Vul Variabelen",
+        shareLink: "Deel Link",
+        emptyTitle: "Geen overeenkomende prompts gevonden",
+        emptyDesc: "Pas uw zoekopdracht aan of maak een nieuwe prompt aan.",
+        toastCopied: "Prompt gekopieerd naar klembord!",
+        toastLinkCopied: "Deellink gekopieerd!"
+      },
+      ar: {
+        studioTag: "مستودع أوامر الذكاء الاصطناعي",
+        heroBadge: "أوامر ونماذج مجربة لـ ChatGPT و Claude و Midjourney",
+        heroHeading: "استوديو مشاركة أوامر الذكاء الاصطناعي عالية الأداء",
+        heroSubtitle: "تصفح وابحث واملأ المتغيرات الديناميكية وانسخ الأوامر بنقرة واحدة.",
+        statPrompts: "الأوامر",
+        statCustom: "مخصصة",
+        statFavs: "المفضلة",
+        searchPlaceholder: "ابحث بالكلمات المفتاحية أو النموذج... (اضغط '/')",
+        newPrompt: "أمر جديد",
+        sortLabel: "ترتيب:",
+        all: "الكل",
+        favorites: "المفضلة",
+        mySnippets: "مقتطفاتي",
+        copyPrompt: "نسخ الأمر",
+        copied: "تم النسخ!",
+        fillVars: "تعبئة المتغيرات",
+        shareLink: "مشاركة الرابط",
+        emptyTitle: "لم يتم العثور على نتائج",
+        emptyDesc: "جرب تغيير كلمات البحث أو إعادة ضبط الفلاتر.",
+        toastCopied: "تم نسخ الأمر إلى الحافظة!",
+        toastLinkCopied: "تم نسخ رابط المشاركة!"
+      },
+      hi: {
+        studioTag: "एआई प्रॉम्प्ट रिपॉजिटरी",
+        heroBadge: "ChatGPT, Claude और Midjourney के लिए परीक्षित प्रॉम्प्ट",
+        heroHeading: "उच्च प्रदर्शन एआई प्रॉम्प्ट और स्निपेट शेयर स्टूडियो",
+        heroSubtitle: "खोजें, चर भरें और एक क्लिक में शक्तिशाली एआई प्रॉम्प्ट कॉपी करें।",
+        statPrompts: "प्रॉम्प्ट्स",
+        statCustom: "कस्टम",
+        statFavs: "पसंदीदा",
+        searchPlaceholder: "शीर्षक, मॉडल या टैग से खोजें... ('/' दबाएं)",
+        newPrompt: "नया प्रॉम्प्ट",
+        sortLabel: "क्रमबद्ध करें:",
+        all: "सभी",
+        favorites: "पसंदीदा",
+        mySnippets: "मेरे स्निपेट्स",
+        copyPrompt: "प्रॉम्प्ट कॉपी करें",
+        copied: "कॉपी हो गया!",
+        fillVars: "वेरिएबल भरें",
+        shareLink: "लिंक साझा करें",
+        emptyTitle: "कोई मेल खाता प्रॉम्प्ट नहीं मिला",
+        emptyDesc: "खोज शब्द बदलकर दोबारा प्रयास करें।",
+        toastCopied: "प्रॉम्प्ट क्लिपबोर्ड पर कॉपी किया गया!",
+        toastLinkCopied: "शेयर लिंक कॉपी किया गया!"
+      },
+      sv: {
+        studioTag: "AI PROMPT REPOSITORIUM",
+        heroBadge: "Verifierade AI-prompts för ChatGPT, Claude & Midjourney",
+        heroHeading: "AI Prompts & Snippets Studio",
+        heroSubtitle: "Sök, fyll i variabler och kopiera beprövade systemprompts med 1 klick.",
+        statPrompts: "Prompts",
+        statCustom: "Anpassade",
+        statFavs: "Favoriter",
+        searchPlaceholder: "Sök efter titel, modell eller taggar... (Tryck '/')",
+        newPrompt: "Ny Prompt",
+        sortLabel: "Sortera:",
+        all: "Alla",
+        favorites: "Favoriter",
+        mySnippets: "Mina Snippets",
+        copyPrompt: "Kopiera Prompt",
+        copied: "Kopierad!",
+        fillVars: "Fyll Variabler",
+        shareLink: "Dela Länk",
+        emptyTitle: "Inga matchande prompts hittades",
+        emptyDesc: "Testa att ändra sökord eller nollställ filter.",
+        toastCopied: "Prompt kopierad till urklipp!",
+        toastLinkCopied: "Delningslänk kopierad!"
+      },
+      uk: {
+        studioTag: "РЕПОЗИТОРІЙ ШІ-ПРОМПТІВ",
+        heroBadge: "Перевірені промпти для ChatGPT, Claude та Midjourney",
+        heroHeading: "Високопродуктивні ШІ-промпти та сніпети",
+        heroSubtitle: "Шукайте, налаштовуйте динамічні змінні та копіюйте промпти в 1 клік.",
+        statPrompts: "Промпти",
+        statCustom: "Власні",
+        statFavs: "Обране",
+        searchPlaceholder: "Пошук за назвою, моделлю чи тегом... (Натисніть '/')",
+        newPrompt: "Новий промпт",
+        sortLabel: "Сортувати:",
+        all: "Всі",
+        favorites: "Обране",
+        mySnippets: "Мої сніпети",
+        copyPrompt: "Копіювати промпт",
+        copied: "Скопійовано!",
+        fillVars: "Заповнити змінні",
+        shareLink: "Поділитися посиланням",
+        emptyTitle: "Промптів не знайдено",
+        emptyDesc: "Спробуйте змінити критерії пошуку або скинути фільтри.",
+        toastCopied: "Промпт скопійовано в буфер обміну!",
+        toastLinkCopied: "Посилання для поширення скопійовано!"
+      }
+    };
+
+    // 2. CURATED RICH PROMPT SAMPLES (Rule 13)
+    const DEFAULT_PROMPTS = [
+      {
+        id: "curated-1",
+        title: "Senior Full-Stack Code Reviewer & Bug Hunter",
+        model: "Claude",
+        category: "dev",
+        tags: ["code-review", "security", "clean-code", "refactor"],
+        desc: "Deep security, performance, and architecture audit with concrete refactoring diffs.",
+        prompt: `Act as a Principal Software Engineer and Security Architect. Thoroughly review the following [Programming Language] code for:
+1. Security vulnerabilities (OWASP Top 10, injection, timing attacks, memory leaks).
+2. Time and Space Complexity bottlenecks (O(N) analysis) and race conditions.
+3. Idiomatic design patterns, error handling, and testability.
+
+Code to review:
+\`\`\`[Programming Language]
+[Code Snippet]
+\`\`\`
+
+Provide your critique with high-impact suggestions, followed by an optimized rewrite with explanation.`,
+        copies: 482,
+        isCustom: false,
+        createdAt: "2026-08-10"
+      },
+      {
+        id: "curated-2",
+        title: "FastAPI Clean Architecture Microservice",
+        model: "ChatGPT",
+        category: "dev",
+        tags: ["python", "fastapi", "docker", "pydantic-v2"],
+        desc: "Generates production-grade Python FastAPI microservices with Dependency Injection.",
+        prompt: `Act as a Senior Python Backend Architect. Generate a production-ready FastAPI microservice for [Service Purpose].
+
+Requirements:
+- Strict Pydantic v2 schemas for request and response validation.
+- Clean Architecture separation: API routers, domain service layer, repository pattern.
+- Asynchronous database operations using SQLAlchemy 2.0 with connection pooling.
+- Centralized structured logging, health-check endpoint, and Dockerfile.
+
+Entity details to model: [Domain Entities and Fields]`,
+        copies: 329,
+        isCustom: false,
+        createdAt: "2026-08-14"
+      },
+      {
+        id: "curated-3",
+        title: "Midjourney v6 Cinematic Photorealistic Portrait",
+        model: "Midjourney",
+        category: "vision",
+        tags: ["midjourney-v6", "portrait", "cinematic", "lighting"],
+        desc: "Hyper-detailed photography prompt with focal length, lighting, and negative weights.",
+        prompt: `An editorial photorealistic portrait of [Subject Character Description], shot on Hasselblad H6D-100c, 85mm f/1.4 lens, cinematic volumetric golden-hour rim lighting, natural skin texture with subtle pores, catchlight in eyes, subtle ambient smoke, 8k resolution, authentic film grain --ar 16:9 --style raw --v 6.0 --q 2`,
+        copies: 615,
+        isCustom: false,
+        createdAt: "2026-08-18"
+      },
+      {
+        id: "curated-4",
+        title: "High-Converting B2B SaaS Landing Page Copy",
+        model: "Claude",
+        category: "marketing",
+        tags: ["copywriting", "saas", "conversion", "landing-page"],
+        desc: "Above-the-fold value proposition, objection demolition, and CTA framework.",
+        prompt: `Act as a world-class Direct-Response Copywriter (inspired by Eugene Schwartz and April Dunford).
+Write high-converting landing page copy for [Product Name], which solves [Primary Pain Point] for [Target Audience].
+
+Structure the output as:
+1. Above-the-fold: Irresistible H1 Headline, clear Subhead, and high-contrast Primary CTA button text.
+2. The "Villain & Agitation" narrative section (highlighting why current solutions fail).
+3. 3 Core Benefit Pillars with punchy micro-copy and visual representation ideas.
+4. Social Proof & Risk-Reversal FAQ section tackling the top 3 buying objections.`,
+        copies: 290,
+        isCustom: false,
+        createdAt: "2026-08-20"
+      },
+      {
+        id: "curated-5",
+        title: "Viral Technical Storyteller & Thought Leader",
+        model: "ChatGPT",
+        category: "writing",
+        tags: ["linkedin", "twitter", "storytelling", "branding"],
+        desc: "Transform dry engineering milestones into viral, high-signal social stories.",
+        prompt: `Act as a viral technology storyteller and ghostwriter for top tech founders.
+Transform the following lesson/experience into a compelling story for [Target Platform: LinkedIn or X]:
+
+Core Event / Insight:
+[What happened and what was learned]
+
+Guidelines:
+- Hook in the first 2 lines (pattern interrupt, zero fluff).
+- Short punchy paragraphs (1-2 sentences each).
+- Authentic vulnerability paired with actionable tactical frameworks.
+- Finish with an engaging open-ended question to spark discussion.`,
+        copies: 412,
+        isCustom: false,
+        createdAt: "2026-08-22"
+      },
+      {
+        id: "curated-6",
+        title: "DeepSeek R1 SQL Query Performance Detective",
+        model: "DeepSeek",
+        category: "dev",
+        tags: ["sql", "postgresql", "query-optimization", "indexing"],
+        desc: "Diagnose query plans, avoid table scans, and optimize multi-table joins.",
+        prompt: `Act as a Staff Database Reliability Engineer specialized in PostgreSQL and MySQL query optimization.
+Analyze this slow query and explain plan:
+
+Query:
+\`\`\`sql
+[Slow SQL Query]
+\`\`\`
+
+Explain Plan / Table Stats:
+[Explain Plan Output or Table Sizes]
+
+Identify:
+1. Sequential scan triggers and Cartesian product risks.
+2. Missing composite indexes or partial index recommendations.
+3. Refactored query using CTEs, window functions, or index hints.`,
+        copies: 219,
+        isCustom: false,
+        createdAt: "2026-08-25"
+      },
+      {
+        id: "curated-7",
+        title: "First-Principles Executive Problem Solver",
+        model: "Claude",
+        category: "strategy",
+        tags: ["first-principles", "strategy", "decision-making", "executive"],
+        desc: "Deconstruct complex business bottlenecks down to fundamental physical & economic truths.",
+        prompt: `Act as an Executive Strategy Advisor trained in First-Principles Thinking (Elon Musk / Charlie Munger mental models).
+We face the following complex strategic dilemma:
+[Strategic Challenge or Bottleneck]
+
+Process:
+1. Strip away all industry analogies, conventional wisdom, and assumptions.
+2. Identify the indisputable foundational truths and constraints of the problem.
+3. Reconstruct a 3-step contrarian solution from ground zero.
+4. Define pre-mortem failure modes and early warning indicators.`,
+        copies: 341,
+        isCustom: false,
+        createdAt: "2026-08-28"
+      },
+      {
+        id: "curated-8",
+        title: "Complex Topic to 5th Grader Analogy Generator",
+        model: "ChatGPT",
+        category: "productivity",
+        tags: ["feynman-technique", "education", "communication", "analogies"],
+        desc: "Break down dense scientific or computer science abstractions using relatable real-world metaphors.",
+        prompt: `Act as a master educator using the Feynman Technique.
+Explain the following complex concept to someone with zero technical background:
+[Concept: e.g. Transformer Self-Attention / Zero-Knowledge Proofs]
+
+Rules:
+- Use an unforgettable physical analogy (like water pipes, postal offices, or kitchen recipes).
+- Ban all insider jargon; if you must use a term, define it instantly with a 3-word metaphor.
+- Conclude with a 1-sentence summary that a 10-year-old would understand.`,
+        copies: 512,
+        isCustom: false,
+        createdAt: "2026-09-01"
+      }
+    ];
+
+    // 3. APPLICATION STATE (Rule 3 & 12)
+    let currentLang = localStorage.getItem('prompt_studio_lang') || 'en';
+    let currentTheme = localStorage.getItem('prompt_studio_theme') || 'cyber'; // cyber | light | minimal
+    let customPrompts = JSON.parse(localStorage.getItem('prompt_studio_custom') || '[]');
+    let favorites = new Set(JSON.parse(localStorage.getItem('prompt_studio_favs') || '[]'));
+    let activeCategory = 'all';
+    let activeModel = 'all';
+    let searchQuery = '';
+    let sortMode = 'newest';
+    let filterFavoritesOnly = false;
+    let filterCustomOnly = false;
+    let deferredPrompt = null; // PWA install prompt
+    let expandedCards = new Set();
+    let activeTagFilter = null;
+    let playgroundStreamTimeout = null;
+
+    // 3.1 TRANSLATION ENGINE & STATE (번역 기능)
+    let globalTranslateToKo = false;
+    let translatedCards = new Set();
+    const translationCache = new Map();
+    let variableModalPrompt = null;
+    let variableModalIsTranslated = false;
+
+    // Curated Korean translations for default high-performance prompts
+    const CURATED_TRANSLATIONS = {
+      'curated-1': {
+        title: "시니어 코드 리뷰어 & 버그 탐색기",
+        desc: "철저한 정적 분석, 엣지 케이스 점검, 복잡도 최적화 및 보안 취약점을 점검하는 전문 코드 리뷰어입니다.",
+        prompt: `당신은 포춘 500대 기업에서 미션 크리티컬 시스템을 다루는 수석 소프트웨어 아키텍트이자 보안 연구원입니다.
+
+제공된 [프로그래밍 언어] 코드를 다음 4가지 핵심 원칙에 따라 철저히 분석하고 리뷰해주세요:
+1. 보안 취약점 (OWASP Top 10, 메모리 누수, SQL 인젝션, 미검증 입력값).
+2. 런타임 성능 및 Big-O 시간/공간 복잡도 병목 구간.
+3. 엣지 케이스 및 오류 복구 복원력.
+4. 관용적 코드 스타일, 모듈화, 유지보수성.
+
+분석 대상 코드:
+\`\`\`
+[검토할 코드 스니펫]
+\`\`\`
+
+지침: 문제를 나열하는 것에 그치지 말고, 각각의 취약점 및 병목 지점을 수정한 리팩토링된 프로덕션 준비 코드를 명확한 주석과 함께 제공하세요.`
+      },
+      'curated-2': {
+        title: "고전환율 SaaS 랜딩 페이지 카피라이터",
+        desc: "방문자의 즉각적인 공감과 높은 결제 전환율을 이끌어내는 B2B/B2C SaaS 헤드라인 및 가치 제안을 작성합니다.",
+        prompt: `당신은 5,000만 달러 이상의 ARR을 달성한 세계적 수준의 직접 반응형(Direct-Response) B2B SaaS 카피라이터입니다.
+
+제품명: [제품 이름]
+타깃 오디언스: [타깃 고객군]
+해결하는 핵심 문제: [핵심 해결 과제]
+
+다음 섹션으로 구성된 랜딩 페이지 카피를 작성해주세요:
+1. 히어로 헤드라인: 전문 용어 없이 3초 만에 시선을 사로잡는 강력한 헤드라인 (3가지 버전 제시).
+2. 서브헤드: 헤드라인의 약속을 뒷받침하는 2문장의 명확한 설명.
+3. 3가지 핵심 혜택(Feature가 아닌 Benefit): 고객의 고통 해소 중심 가치 제안.
+4. 강력한 CTA(Call to Action) 버튼 문구 및 마이크로카피.
+5. 사회적 증거(Social Proof)를 강조하는 헤드라인 및 프레임워크.`
+      },
+      'curated-3': {
+        title: "시네마틱 SF 사이버펑크 인물 사진 (Midjourney)",
+        desc: "블레이드 러너 스타일의 네온 조명과 8K 초고화질 텍스처를 구현하는 미드저니 시네마틱 프롬프트입니다.",
+        prompt: `cinematic medium portrait of a [인물 캐릭터 설명], neon-drenched rainy cyberpunk alleyway, holographic reflections on wet pavement, volumetric misty lighting, highly detailed cybernetic details, Hasselblad 80mm lens, f/1.8 aperture, photorealistic skin pores and texture, dramatic rim light, 8k resolution, Unreal Engine 5 render style --ar 16:9 --v 6.0 --style raw`
+      },
+      'curated-4': {
+        title: "심층 분석적 사고 및 논리 분해기",
+        desc: "제1원칙 사고와 복잡계 분석 프레임워크를 적용하여 난해한 문제를 다각도로 해체합니다.",
+        prompt: `당신은 복잡계 과학 및 제1원칙 사고에 특화된 세계적인 전략 분석가입니다.
+
+다음 주제 또는 당면 과제를 체계적으로 분해하여 분석해주세요:
+[분석할 문제 또는 복잡한 이슈]
+
+분석 프레임워크:
+1. 제1원칙 분해: 검증되지 않은 가정을 모두 걷어내고 가장 근본적인 참(Fact) 진실만을 추출하세요.
+2. 2차 및 3차 파급 효과: 즉각적인 결과 뒤에 발생하는 연쇄적 피드백 루프를 식별하세요.
+3. 악마의 변호인(Devil's Advocate): 가장 그럴듯한 반대 논리와 실패 시나리오 3가지를 제시하세요.
+4. 실행 가능한 최소 실행 계획(Actionable Synthesis): 당장 실행할 수 있는 전략적 로드맵을 도출하세요.`
+      },
+      'curated-5': {
+        title: "SQL 쿼리 최적화기 & 인덱스 아키텍트",
+        desc: "느린 데이터베이스 쿼리를 진단하고, 복합 인덱스 설계 및 실행 계획 최적화를 통해 밀리초 단위 속도를 달성합니다.",
+        prompt: `당신은 대규모 고성능 데이터베이스(PostgreSQL/MySQL)를 튜닝하는 최고 수준의 데이터베이스 성능 엔지니어입니다.
+
+느린 쿼리 및 테이블 정보:
+데이터베이스 종류: [데이터베이스 종류: PostgreSQL / MySQL / Oracle]
+현재 SQL 쿼리:
+\`\`\`sql
+[현재 SQL 쿼리문]
+\`\`\`
+테이블 볼륨 및 인덱스 현황: [예: 2,000만 행, id 및 created_at 인덱스만 존재]
+
+요청 사항:
+1. 테이블 풀 스캔(Full Table Scan), 임시 테이블 생성, 파일 정렬(Filesort) 등 성능 병목의 근본 원인을 분석하세요.
+2. 최적화된 리라이팅 쿼리를 작성하세요.
+3. 완벽히 튜닝된 복합 인덱스(Composite Index) 생성 DDL 구문을 제안하세요.
+4. EXPLAIN ANALYZE 결과가 어떻게 개선될지 예측 비교를 제시하세요.`
+      },
+      'curated-6': {
+        title: "경영진 스피치 & 투자 유치 피칭 스크립트",
+        desc: "투자자와 청중의 마음을 움직이는 내러티브 구조로 강렬한 인상을 남기는 프레젠테이션 스피치입니다.",
+        prompt: `당신은 테드(TED) 메인 강연자들과 실리콘밸리 유니콘 창업자들을 지도한 최고의 스피치 코치입니다.
+
+스피치 주제: [발표 주제]
+청중 대상: [청중 유형: VC 투자자 / 전사 직원 / 컨퍼런스 참가자]
+발표 시간: [발표 분량: 예: 3분 피칭 / 5분 키노트]
+
+작성 가이드:
+1. 오프닝 훅(Hook): 청중의 선입견을 깨부수는 첫 20초 충격 질문 또는 스토리.
+2. 갈등과 대립(Conflict): 기존 시장의 실패와 왜 지금(Why Now)이어야 하는지 극적 대비.
+3. 구원(The Resolution): 우리의 해결책이 세상을 바꾸는 방식.
+4. 콜투액션(CTA): 기립 박수와 즉각적인 행동을 유도하는 마무리 멘트.`
+      },
+      'curated-7': {
+        title: "실사급 미니멀 건축 인테리어 사진",
+        desc: "자연광과 소재의 질감이 살아 숨 쉬는 건축 잡지(Architectural Digest) 스타일의 비주얼 프롬프트입니다.",
+        prompt: `editorial architectural photograph of [공간 설명: 예: minimal concrete brutalist living room], floor-to-ceiling panoramic glass windows overlooking [풍경: misty pine forest], warm afternoon golden hour sunlight casting soft shadows, minimal oak furniture, linen textured cushions, architectural digest cover style, shot on Sony A7R V, 35mm lens, f/4, photorealistic, Ray-tracing, ultra realistic detail --ar 16:9 --v 6.0`
+      },
+      'curated-8': {
+        title: "초등학생도 이해하는 5세 눈높이(ELI5) 교육자",
+        desc: "난해한 전문 개념을 물 파이프, 우체국, 요리 레시피 같은 직관적 일상 비유로 단번에 이해시킵니다.",
+        prompt: `당신은 복잡하고 어려운 개념을 누구나 감탄하게 쉽게 설명하는 세계 최고의 교육 멘토입니다.
+
+기술적 배경지식이 전혀 없는 사람에게 다음 개념을 설명해주세요:
+[설명할 복잡한 개념: 예: 트랜스포머 셀프 어텐션 / 영지식 증명 / 양자 컴퓨팅]
+
+규칙:
+- 물 파이프 배관, 동네 우체국, 주방 요리법처럼 누구나 상상할 수 있는 일상 물리적 비유를 반드시 사용하세요.
+- 모든 업계 전문 용어를 금지합니다. 불가피하게 사용할 경우 즉시 3단어 쉬운 비유로 정의하세요.
+- 10세 어린이도 완벽하게 이해할 수 있는 1문장 핵심 요약으로 마무리하세요.`
+      }
+    };
+
+    // Generic API-based text translator with robust multi-provider & offline fallback
+    async function translateText(text, targetLang = 'ko', sourceLang = 'auto') {
+      if (!text || !text.trim()) return '';
+      const cacheKey = `${sourceLang}_${targetLang}_${text.trim()}`;
+      if (translationCache.has(cacheKey)) {
+        return translationCache.get(cacheKey);
+      }
+
+      // Preserve [Variable] tokens
+      const placeholders = [];
+      const sanitized = text.replace(/\[(.*?)\]/g, (match) => {
+        placeholders.push(match);
+        return `__VAR_${placeholders.length - 1}__`;
+      });
+
+      try {
+        const sl = sourceLang === 'auto' ? 'auto' : sourceLang;
+        const tl = targetLang;
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(sanitized)}`;
+        const res = await fetch(url);
+        if (res.ok) {
+          const data = await res.json();
+          let translated = '';
+          if (Array.isArray(data) && Array.isArray(data[0])) {
+            translated = data[0].map(item => item[0]).filter(Boolean).join('');
+          }
+          if (translated) {
+            // Restore [Variable] placeholders
+            placeholders.forEach((token, idx) => {
+              const regex = new RegExp(`__VAR_${idx}__`, 'g');
+              translated = translated.replace(regex, token);
+            });
+            translationCache.set(cacheKey, translated);
+            return translated;
+          }
+        }
+      } catch (e) {
+        console.warn('Network translation fetch failed, using fallback rule:', e);
+      }
+
+      // Fallback if network fails: return sanitized with placeholders
+      let fallbackResult = sanitized;
+      placeholders.forEach((token, idx) => {
+        const regex = new RegExp(`__VAR_${idx}__`, 'g');
+        fallbackResult = fallbackResult.replace(regex, token);
+      });
+      return fallbackResult;
+    }
+
+    // Helper: Translate text
+    function t(key) {
+      const dict = i18n[currentLang] || i18n['en'];
+      return dict[key] || i18n['en'][key] || key;
+    }
+
+    // Initialize All
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      initLanguage();
+      readUrlHashState();
+      bindEvents();
+      initDraftAutoSave();
+      renderAll();
+      initPWA();
+      if (window.lucide) lucide.createIcons();
+    });
+
+    // 4. THEME CONTROLLER (Rule 7)
+    function initTheme() {
+      applyTheme(currentTheme);
+      document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+        if (currentTheme === 'cyber') {
+          applyTheme('light');
+        } else if (currentTheme === 'light') {
+          applyTheme('minimal');
+        } else {
+          applyTheme('cyber');
+        }
+      });
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('prompt_studio_theme', theme);
+      const body = document.body;
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+
+      body.classList.remove('theme-light', 'theme-minimal');
+      html.classList.remove('dark');
+
+      if (theme === 'cyber') {
+        html.classList.add('dark');
+        icon.setAttribute('data-lucide', 'moon');
+        showToast('Switched to Cyber Neon Theme', 'info');
+      } else if (theme === 'light') {
+        body.classList.add('theme-light');
+        icon.setAttribute('data-lucide', 'sun');
+        showToast('Switched to Clean Light Theme', 'info');
+      } else {
+        html.classList.add('dark');
+        body.classList.add('theme-minimal');
+        icon.setAttribute('data-lucide', 'monitor');
+        showToast('Switched to Minimal Obsidian Theme', 'info');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // 5. LANGUAGE & I18N CONTROLLER (Rule 1)
+    function initLanguage() {
+      const langSelect = document.getElementById('lang-select');
+      langSelect.value = currentLang;
+      applyLanguage(currentLang, false);
+
+      langSelect.addEventListener('change', (e) => {
+        applyLanguage(e.target.value, true);
+      });
+    }
+
+    function applyLanguage(lang, announce = true) {
+      currentLang = lang;
+      localStorage.setItem('prompt_studio_lang', lang);
+
+      // Support RTL for Arabic
+      if (lang === 'ar') {
+        document.documentElement.setAttribute('dir', 'rtl');
+      } else {
+        document.documentElement.setAttribute('dir', 'ltr');
+      }
+
+      // Update static UI text
+      document.getElementById('lbl-studio-tag').textContent = t('studioTag');
+      document.getElementById('hero-badge').textContent = t('heroBadge');
+      document.getElementById('hero-heading').textContent = t('heroHeading');
+      document.getElementById('hero-subtitle').textContent = t('heroSubtitle');
+      document.getElementById('lbl-stat-prompts').textContent = t('statPrompts');
+      document.getElementById('lbl-stat-custom').textContent = t('statCustom');
+      document.getElementById('lbl-stat-favs').textContent = t('statFavs');
+      document.getElementById('search-input').placeholder = t('searchPlaceholder');
+      document.getElementById('btn-text-new').textContent = t('newPrompt');
+      document.getElementById('lbl-sort').textContent = t('sortLabel');
+      document.getElementById('lbl-btn-favs').textContent = t('favorites');
+      document.getElementById('lbl-btn-custom').textContent = t('mySnippets');
+      document.getElementById('lbl-empty-title').textContent = t('emptyTitle');
+      document.getElementById('lbl-empty-desc').textContent = t('emptyDesc');
+
+      if (announce) {
+        showToast(`Language set to ${lang.toUpperCase()}`, 'info');
+        renderPrompts();
+      }
+    }
+
+    // 6. URL HASH ROUTING & STATE SYNC (Rule 12)
+    function readUrlHashState() {
+      if (!window.location.hash) return;
+      try {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        if (params.has('q')) {
+          searchQuery = params.get('q');
+          document.getElementById('search-input').value = searchQuery;
+          document.getElementById('clear-search-btn').classList.remove('hidden');
+        }
+        if (params.has('cat')) {
+          activeCategory = params.get('cat');
+          updateCategoryPillsUI();
+        }
+        if (params.has('model')) {
+          activeModel = params.get('model');
+          updateModelPillsUI();
+        }
+      } catch (e) {
+        console.warn('Invalid URL hash params:', e);
+      }
+    }
+
+    function updateUrlHashState() {
+      const params = new URLSearchParams();
+      if (searchQuery.trim()) params.set('q', searchQuery.trim());
+      if (activeCategory !== 'all') params.set('cat', activeCategory);
+      if (activeModel !== 'all') params.set('model', activeModel);
+      const str = params.toString();
+      if (str) {
+        history.replaceState(null, '', '#' + str);
+      } else {
+        history.replaceState(null, '', window.location.pathname);
+      }
+    }
+
+    window.addEventListener('hashchange', () => {
+      readUrlHashState();
+      renderPrompts();
+    });
+
+    // 7. KEYBOARD SHORTCUTS & EVENT BINDINGS (Rule 8)
+    function bindEvents() {
+      // Live search input with immediate reactive render
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        clearSearchBtn.classList.toggle('hidden', !searchQuery);
+        updateUrlHashState();
+        renderPrompts();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        updateUrlHashState();
+        renderPrompts();
+        searchInput.focus();
+      });
+
+      // Sort Select
+      document.getElementById('sort-select').addEventListener('change', (e) => {
+        sortMode = e.target.value;
+        renderPrompts();
+      });
+
+      // Category filter pills
+      document.getElementById('category-pills').addEventListener('click', (e) => {
+        const btn = e.target.closest('.cat-pill');
+        if (!btn) return;
+        activeCategory = btn.getAttribute('data-cat');
+        updateCategoryPillsUI();
+        updateUrlHashState();
+        renderPrompts();
+      });
+
+      // Model filter pills
+      document.getElementById('model-pills').addEventListener('click', (e) => {
+        const btn = e.target.closest('.model-pill');
+        if (!btn) return;
+        activeModel = btn.getAttribute('data-model');
+        updateModelPillsUI();
+        updateUrlHashState();
+        renderPrompts();
+      });
+
+      // Favorites Toggle
+      document.getElementById('filter-fav-btn').addEventListener('click', () => {
+        filterFavoritesOnly = !filterFavoritesOnly;
+        const btn = document.getElementById('filter-fav-btn');
+        btn.classList.toggle('bg-amber-500/20', filterFavoritesOnly);
+        btn.classList.toggle('border-amber-500/50', filterFavoritesOnly);
+        btn.classList.toggle('text-amber-300', filterFavoritesOnly);
+        renderPrompts();
+      });
+
+      // Custom Snippets Toggle
+      document.getElementById('filter-custom-btn').addEventListener('click', () => {
+        filterCustomOnly = !filterCustomOnly;
+        const btn = document.getElementById('filter-custom-btn');
+        btn.classList.toggle('bg-purple-500/20', filterCustomOnly);
+        btn.classList.toggle('border-purple-500/50', filterCustomOnly);
+        btn.classList.toggle('text-purple-300', filterCustomOnly);
+        renderPrompts();
+      });
+
+      // Translate All Cards Toggle
+      const translateAllBtn = document.getElementById('toggle-translate-all-btn');
+      if (translateAllBtn) {
+        translateAllBtn.addEventListener('click', toggleTranslateAll);
+      }
+
+      // Modals triggers
+      document.getElementById('open-translator-btn').addEventListener('click', () => openModal('translator-modal'));
+      document.getElementById('open-new-prompt-btn').addEventListener('click', () => openNewPromptModal());
+      document.getElementById('open-io-btn').addEventListener('click', () => openModal('io-modal'));
+      document.getElementById('open-shortcuts-btn').addEventListener('click', () => openModal('shortcuts-modal'));
+      document.getElementById('open-feedback-btn').addEventListener('click', () => openModal('feedback-modal'));
+
+      // Translator input live counter
+      const transInput = document.getElementById('trans-input-text');
+      if (transInput) {
+        transInput.addEventListener('input', () => {
+          const len = transInput.value.length;
+          document.getElementById('trans-char-count').textContent = `${len}자`;
+        });
+      }
+
+      // Playground input live counter
+      const pgInput = document.getElementById('pg-prompt-input');
+      if (pgInput) {
+        pgInput.addEventListener('input', updatePgCharCount);
+      }
+
+      // New Prompt Form Submission
+      document.getElementById('prompt-form').addEventListener('submit', handlePromptFormSubmit);
+
+      // Global Keydown listener (Rule 8)
+      window.addEventListener('keydown', (e) => {
+        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        const isInput = activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select';
+
+        if (e.key === '/' && !isInput) {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        } else if ((e.key === 'n' || e.key === 'N') && !isInput) {
+          e.preventDefault();
+          openNewPromptModal();
+        } else if ((e.key === 't' || e.key === 'T') && !isInput) {
+          e.preventDefault();
+          openModal('translator-modal');
+        } else if ((e.key === 'f' || e.key === 'F') && !isInput) {
+          e.preventDefault();
+          document.getElementById('filter-fav-btn').click();
+        } else if (e.key === 'Escape') {
+          closeAllModals();
+        }
+      });
+    }
+
+    function updateCategoryPillsUI() {
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        const matches = btn.getAttribute('data-cat') === activeCategory;
+        btn.classList.toggle('bg-brand-600', matches);
+        btn.classList.toggle('text-white', matches);
+        btn.classList.toggle('bg-cyber-surface', !matches);
+        btn.classList.toggle('text-slate-300', !matches);
+      });
+    }
+
+    function updateModelPillsUI() {
+      document.querySelectorAll('.model-pill').forEach(btn => {
+        const matches = btn.getAttribute('data-model') === activeModel;
+        btn.classList.toggle('bg-slate-800', matches);
+        btn.classList.toggle('text-cyan-300', matches);
+        btn.classList.toggle('border-cyan-500/50', matches);
+      });
+    }
+
+    // 8. PROMPT RENDERING ENGINE
+    function getAllPrompts() {
+      return [...customPrompts, ...DEFAULT_PROMPTS];
+    }
+
+    function renderAll() {
+      updateStats();
+      renderTagCloud();
+      renderPrompts();
+    }
+
+    function renderTagCloud() {
+      const tagPillsContainer = document.getElementById('tag-cloud-pills');
+      const clearTagBtn = document.getElementById('clear-tag-btn');
+      if (!tagPillsContainer) return;
+
+      const all = getAllPrompts();
+      const tagCounts = {};
+      all.forEach(p => {
+        if (p.tags && Array.isArray(p.tags)) {
+          p.tags.forEach(t => {
+            const clean = t.trim().toLowerCase();
+            if (clean) tagCounts[clean] = (tagCounts[clean] || 0) + 1;
+          });
+        }
+      });
+
+      const sortedTags = Object.entries(tagCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10);
+
+      if (sortedTags.length === 0) {
+        tagPillsContainer.innerHTML = '<span class="text-[10px] text-slate-500">등록된 태그 없음</span>';
+        if (clearTagBtn) clearTagBtn.classList.add('hidden');
+        return;
+      }
+
+      tagPillsContainer.innerHTML = sortedTags.map(([tag, count]) => {
+        const isActive = activeTagFilter === tag;
+        return `
+          <button type="button" onclick="toggleTagFilter('${escapeHtml(tag)}')" class="px-2 py-0.5 rounded text-[10px] font-medium transition-all shrink-0 flex items-center gap-1 ${isActive ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-sm' : 'bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700/60'}">
+            <span>#${escapeHtml(tag)}</span>
+            <span class="text-[9px] opacity-60 font-mono">(${count})</span>
+          </button>
+        `;
+      }).join('');
+
+      if (clearTagBtn) {
+        clearTagBtn.classList.toggle('hidden', !activeTagFilter);
+      }
+    }
+
+    function toggleTagFilter(tag) {
+      if (activeTagFilter === tag) {
+        activeTagFilter = null;
+        searchQuery = '';
+        document.getElementById('search-input').value = '';
+        document.getElementById('clear-search-btn').classList.add('hidden');
+      } else {
+        activeTagFilter = tag;
+        searchQuery = tag;
+        document.getElementById('search-input').value = tag;
+        document.getElementById('clear-search-btn').classList.remove('hidden');
+      }
+      updateUrlHashState();
+      renderTagCloud();
+      renderPrompts();
+    }
+
+    function clearTagFilter() {
+      activeTagFilter = null;
+      searchQuery = '';
+      document.getElementById('search-input').value = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      updateUrlHashState();
+      renderTagCloud();
+      renderPrompts();
+    }
+
+    function toggleCardExpand(id) {
+      if (expandedCards.has(id)) {
+        expandedCards.delete(id);
+      } else {
+        expandedCards.add(id);
+      }
+      renderPrompts();
+    }
+
+    function updateStats() {
+      const all = getAllPrompts();
+      document.getElementById('stat-total').textContent = all.length;
+      document.getElementById('stat-custom').textContent = customPrompts.length;
+      document.getElementById('stat-favs').textContent = favorites.size;
+    }
+
+    function renderPrompts() {
+      const grid = document.getElementById('prompts-grid');
+      const emptyState = document.getElementById('empty-state');
+      let list = getAllPrompts();
+
+      // Filter by Category
+      if (activeCategory !== 'all') {
+        list = list.filter(p => p.category === activeCategory);
+      }
+
+      // Filter by Model
+      if (activeModel !== 'all') {
+        list = list.filter(p => p.model === activeModel);
+      }
+
+      // Filter by Favorites
+      if (filterFavoritesOnly) {
+        list = list.filter(p => favorites.has(p.id));
+      }
+
+      // Filter by Custom
+      if (filterCustomOnly) {
+        list = list.filter(p => p.isCustom);
+      }
+
+      // Filter by Search Query
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        list = list.filter(p => 
+          p.title.toLowerCase().includes(q) ||
+          p.desc.toLowerCase().includes(q) ||
+          p.prompt.toLowerCase().includes(q) ||
+          p.tags.some(tag => tag.toLowerCase().includes(q)) ||
+          p.model.toLowerCase().includes(q)
+        );
+      }
+
+      // Sort
+      if (sortMode === 'popular') {
+        list.sort((a, b) => (b.copies || 0) - (a.copies || 0));
+      } else if (sortMode === 'alpha') {
+        list.sort((a, b) => a.title.localeCompare(b.title));
+      } else {
+        // newest
+        list.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+      }
+
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = list.map(prompt => renderPromptCard(prompt)).join('');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Highlight [VARIABLE] tokens in prompt preview
+    function highlightVariables(text) {
+      return text.replace(/\[(.*?)\]/g, '<span class="px-1.5 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono text-[10px] font-semibold">[$1]</span>');
+    }
+
+    function renderPromptCard(p) {
+      const isFav = favorites.has(p.id);
+      const isCardTranslated = globalTranslateToKo || translatedCards.has(p.id);
+      
+      let displayTitle = p.title;
+      let displayDesc = p.desc;
+      let displayPrompt = p.prompt;
+
+      if (isCardTranslated) {
+        if (CURATED_TRANSLATIONS[p.id]) {
+          displayTitle = CURATED_TRANSLATIONS[p.id].title;
+          displayDesc = CURATED_TRANSLATIONS[p.id].desc;
+          displayPrompt = CURATED_TRANSLATIONS[p.id].prompt;
+        } else if (translationCache.has(`card_${p.id}`)) {
+          const cached = translationCache.get(`card_${p.id}`);
+          displayTitle = cached.title || p.title;
+          displayDesc = cached.desc || p.desc;
+          displayPrompt = cached.prompt || p.prompt;
+        }
+      }
+
+      const modelColorMap = {
+        'Claude': 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+        'ChatGPT': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+        'Midjourney': 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+        'DeepSeek': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+        'Gemini': 'bg-blue-500/10 text-blue-400 border-blue-500/30'
+      };
+      const modelBadgeClass = modelColorMap[p.model] || 'bg-slate-800 text-slate-300 border-slate-700';
+
+      const isExpanded = expandedCards.has(p.id);
+      const isLongPrompt = displayPrompt.length > 130;
+      const historyCount = (p.isCustom && p.history) ? p.history.length : 0;
+
+      return `
+        <article class="card-surface bg-cyber-surface hover:bg-cyber-surfaceHover border border-cyber-border rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:border-slate-600 shadow-lg group relative" id="prompt-card-${p.id}">
+          
+          <!-- Top Row: Badges & Favorite Star -->
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border ${modelBadgeClass}">
+                ${escapeHtml(p.model)}
+              </span>
+              ${p.isCustom ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40 flex items-center gap-1" title="비밀번호로 보호된 커스텀 스니펫"><i data-lucide="lock" class="w-2.5 h-2.5 text-purple-300"></i><span>Custom</span></span>` : ''}
+              ${isCardTranslated ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-cyan-950/90 text-cyan-300 border border-cyan-500/40 flex items-center gap-1"><i data-lucide="languages" class="w-2.5 h-2.5"></i><span>한국어</span></span>` : ''}
+              <span class="text-[10px] text-slate-400 font-mono">
+                <i data-lucide="copy" class="w-2.5 h-2.5 inline mr-0.5"></i>${p.copies || 0}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1">
+              <!-- Direct External AI Launcher Dropdown -->
+              <div class="relative group/launch">
+                <button class="p-1.5 rounded-lg text-slate-400 hover:text-emerald-400 hover:bg-slate-800 transition-colors" title="외부 AI (ChatGPT, Claude, Gemini)로 바로 실행">
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </button>
+                <div class="absolute right-0 top-full mt-1 hidden group-hover/launch:flex flex-col bg-slate-900/95 backdrop-blur-md border border-cyber-border rounded-xl p-1.5 shadow-2xl z-30 min-w-[135px] gap-1">
+                  <button type="button" onclick="launchPromptToAI('${p.id}', 'chatgpt')" class="px-2 py-1.5 rounded-lg text-left hover:bg-emerald-950/80 text-emerald-300 text-[11px] flex items-center gap-1.5 transition-colors">
+                    <i data-lucide="sparkles" class="w-3 h-3"></i>
+                    <span>ChatGPT 열기</span>
+                  </button>
+                  <button type="button" onclick="launchPromptToAI('${p.id}', 'claude')" class="px-2 py-1.5 rounded-lg text-left hover:bg-amber-950/80 text-amber-300 text-[11px] flex items-center gap-1.5 transition-colors">
+                    <i data-lucide="bot" class="w-3 h-3"></i>
+                    <span>Claude 열기</span>
+                  </button>
+                  <button type="button" onclick="launchPromptToAI('${p.id}', 'gemini')" class="px-2 py-1.5 rounded-lg text-left hover:bg-blue-950/80 text-blue-300 text-[11px] flex items-center gap-1.5 transition-colors">
+                    <i data-lucide="zap" class="w-3 h-3"></i>
+                    <span>Gemini 열기</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Translate Prompt Card Button -->
+              <button onclick="toggleCardTranslation('${p.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors" title="${isCardTranslated ? '원문으로 보기' : '한국어로 번역'}">
+                <i data-lucide="languages" class="w-4 h-4 ${isCardTranslated ? 'text-cyan-400' : ''}"></i>
+              </button>
+
+              <!-- Direct Share Link Button (Rule 4) -->
+              <button onclick="sharePromptLink('${p.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors" title="${t('shareLink')}">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+              </button>
+
+              <!-- Favorite Toggle (Rule 3) -->
+              <button onclick="toggleFavorite('${p.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-colors" title="Bookmark">
+                <i data-lucide="star" class="w-4 h-4 ${isFav ? 'fill-amber-400 text-amber-400' : ''}"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Title & Description -->
+          <div class="mb-3">
+            <h2 class="font-bold text-sm sm:text-base text-white tracking-tight mb-1 group-hover:text-cyan-300 transition-colors">
+              ${escapeHtml(displayTitle)}
+            </h2>
+            <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed text-muted">
+              ${escapeHtml(displayDesc)}
+            </p>
+          </div>
+
+          <!-- Prompt Preview Box with Expand/Collapse (Rule 3) -->
+          <div class="relative mb-3">
+            <div id="prompt-preview-${p.id}" class="bg-slate-950/70 border border-cyber-border rounded-xl p-3 font-mono text-[11px] text-slate-300 leading-relaxed select-text transition-all duration-200 ${isExpanded ? 'max-h-96 overflow-y-auto ring-1 ring-cyan-500/30' : 'max-h-28 overflow-hidden'}">
+              ${highlightVariables(escapeHtml(displayPrompt))}
+            </div>
+            ${isLongPrompt ? `
+              <div class="flex items-center justify-between mt-1 px-1">
+                <button type="button" onclick="toggleCardExpand('${p.id}')" class="text-[10px] text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1 focus:outline-none transition-colors">
+                  <span>${isExpanded ? '간략히 접기' : '전체 프롬프트 펼치기'}</span>
+                  <i data-lucide="${isExpanded ? 'chevron-up' : 'chevron-down'}" class="w-3 h-3"></i>
+                </button>
+                <span class="text-[10px] text-slate-500 font-mono">${displayPrompt.length}자</span>
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- Tags List -->
+          <div class="flex flex-wrap gap-1 mb-4">
+            ${p.tags.map(tag => `
+              <span onclick="filterByTag('${escapeHtml(tag)}')" class="px-2 py-0.5 rounded bg-slate-800/80 hover:bg-brand-600/30 text-slate-400 hover:text-brand-300 text-[10px] cursor-pointer transition-colors">
+                #${escapeHtml(tag)}
+              </span>
+            `).join('')}
+          </div>
+
+          <!-- Bottom Action Buttons (Rule 4, 9, 13) -->
+          <div class="pt-3 border-t border-cyber-border flex items-center justify-between gap-1.5 mt-auto flex-wrap">
+            
+            <div class="flex items-center gap-1">
+              <!-- Fill Variables Button -->
+              <button onclick="openVariableModal('${p.id}')" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center gap-1 transition-colors active:scale-95">
+                <i data-lucide="sliders" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>${t('fillVars')}</span>
+              </button>
+
+              <!-- Playground Test Button -->
+              <button onclick="openPlaygroundWithPrompt('${p.id}')" class="px-2.5 py-1.5 rounded-lg bg-cyan-950/70 hover:bg-cyan-900/80 border border-cyan-500/40 text-cyan-300 hover:text-white text-xs font-medium flex items-center gap-1 transition-all active:scale-95" title="AI 즉석 테스트실에서 실행">
+                <i data-lucide="play" class="w-3 h-3 fill-cyan-400 text-cyan-400"></i>
+                <span>테스트</span>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1">
+              <!-- Quick Copy Button with Micro-Interaction (Rule 9) -->
+              <button id="copy-btn-${p.id}" onclick="copyPromptText('${p.id}')" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md shadow-brand-600/20 transition-all active:scale-95">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>${t('copyPrompt')}</span>
+              </button>
+
+              ${p.isCustom ? `
+                <div class="flex items-center gap-0.5 border-l border-cyber-border pl-1 ml-0.5">
+                  ${historyCount > 0 ? `
+                    <button onclick="openHistoryModal('${p.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-purple-300 hover:bg-slate-800 transition-colors" title="수정 히스토리 (${historyCount}개 버전)">
+                      <i data-lucide="history" class="w-3.5 h-3.5 text-purple-400"></i>
+                    </button>
+                  ` : ''}
+                  <button onclick="requestEditPrompt('${p.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors" title="수정 (비밀번호 확인)">
+                    <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <button onclick="requestDeletePrompt('${p.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors" title="삭제 (비밀번호 확인)">
+                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+    // External AI Launchers
+    function launchPromptToAI(id, provider) {
+      const all = getAllPrompts();
+      const item = all.find(p => p.id === id);
+      if (!item) return;
+
+      let promptText = item.prompt;
+      const isCardTranslated = globalTranslateToKo || translatedCards.has(id);
+      if (isCardTranslated) {
+        if (CURATED_TRANSLATIONS[id]) {
+          promptText = CURATED_TRANSLATIONS[id].prompt;
+        } else if (translationCache.has(`card_${id}`)) {
+          promptText = translationCache.get(`card_${id}`).prompt || item.prompt;
+        }
+      }
+
+      executeAILaunch(promptText, provider);
+    }
+
+    function launchDirectAI(provider) {
+      const promptInput = document.getElementById('pg-prompt-input');
+      const text = promptInput ? promptInput.value.trim() : '';
+      if (!text) {
+        showToast('테스트실에 전송할 프롬프트가 비어있습니다.', 'error');
+        return;
+      }
+      executeAILaunch(text, provider);
+    }
+
+    function executeAILaunch(text, provider) {
+      navigator.clipboard.writeText(text).then(() => {
+        let aiName = 'ChatGPT';
+        let url = 'https://chatgpt.com/';
+        if (provider === 'chatgpt') {
+          aiName = 'ChatGPT';
+          url = `https://chatgpt.com/?q=${encodeURIComponent(text)}`;
+        } else if (provider === 'claude') {
+          aiName = 'Claude';
+          url = 'https://claude.ai/new';
+        } else if (provider === 'gemini') {
+          aiName = 'Gemini';
+          url = 'https://gemini.google.com/app';
+        }
+
+        showToast(`프롬프트가 클립보드에 복사되었습니다! ${aiName} 창으로 이동합니다 🚀`, 'success');
+        window.open(url, '_blank');
+      }).catch(() => {
+        window.open(provider === 'chatgpt' ? 'https://chatgpt.com/' : provider === 'claude' ? 'https://claude.ai/' : 'https://gemini.google.com/', '_blank');
+      });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // 9. COPY TO CLIPBOARD & MICRO-INTERACTIONS (Rule 4 & 9)
+    function copyPromptText(id) {
+      const all = getAllPrompts();
+      const item = all.find(p => p.id === id);
+      if (!item) return;
+
+      let textToCopy = item.prompt;
+      const isCardTranslated = globalTranslateToKo || translatedCards.has(id);
+      if (isCardTranslated) {
+        if (CURATED_TRANSLATIONS[id]) {
+          textToCopy = CURATED_TRANSLATIONS[id].prompt;
+        } else if (translationCache.has(`card_${id}`)) {
+          textToCopy = translationCache.get(`card_${id}`).prompt || item.prompt;
+        }
+      }
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        item.copies = (item.copies || 0) + 1;
+        saveCustomPrompts();
+        
+        // Micro-interaction button state change
+        const btn = document.getElementById(`copy-btn-${id}`);
+        if (btn) {
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>${t('copied')}</span>`;
+          btn.classList.remove('bg-brand-600', 'hover:bg-brand-500');
+          btn.classList.add('bg-emerald-600');
+          if (window.lucide) lucide.createIcons();
+
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('bg-emerald-600');
+            btn.classList.add('bg-brand-600', 'hover:bg-brand-500');
+            if (window.lucide) lucide.createIcons();
+          }, 1800);
+        }
+
+        showToast(isCardTranslated ? (t('toastTranslatedCopied') || '번역된 프롬프트가 복사되었습니다!') : t('toastCopied'), 'success');
+      }).catch(err => {
+        console.error('Clipboard failed:', err);
+        showToast('Failed to copy. Please allow clipboard permissions.', 'error');
+      });
+    }
+
+    // Toggle single card translation
+    async function toggleCardTranslation(id) {
+      if (translatedCards.has(id)) {
+        translatedCards.delete(id);
+        renderPrompts();
+        showToast(t('viewOriginal') || '원문으로 전환되었습니다.', 'info');
+        return;
+      }
+
+      const all = getAllPrompts();
+      const p = all.find(item => item.id === id);
+      if (!p) return;
+
+      if (CURATED_TRANSLATIONS[id]) {
+        translatedCards.add(id);
+        renderPrompts();
+        showToast('한국어로 번역되었습니다 🇰🇷', 'success');
+        return;
+      }
+
+      // Dynamic translation for custom snippets
+      showToast(t('toastTranslating') || '프롬프트를 번역하고 있습니다...', 'info');
+      try {
+        const [tTitle, tDesc, tPrompt] = await Promise.all([
+          translateText(p.title, 'ko', 'auto'),
+          translateText(p.desc, 'ko', 'auto'),
+          translateText(p.prompt, 'ko', 'auto')
+        ]);
+        translationCache.set(`card_${id}`, { title: tTitle, desc: tDesc, prompt: tPrompt });
+        translatedCards.add(id);
+        renderPrompts();
+        showToast(t('toastTranslated') || '번역이 완료되었습니다! 🇰🇷', 'success');
+      } catch (err) {
+        console.error('Translation error:', err);
+        showToast('번역 중 오류가 발생했습니다.', 'error');
+      }
+    }
+
+    // Toggle global translation for all cards
+    function toggleTranslateAll() {
+      globalTranslateToKo = !globalTranslateToKo;
+      const btn = document.getElementById('toggle-translate-all-btn');
+      const lbl = document.getElementById('lbl-btn-translate-all');
+      
+      if (globalTranslateToKo) {
+        if (btn) {
+          btn.classList.add('bg-cyan-950', 'border-cyan-400', 'text-cyan-200');
+          btn.classList.remove('text-cyan-300');
+        }
+        if (lbl) lbl.textContent = t('viewAllOriginal') || '원문 전체 보기';
+        showToast('모든 프롬프트를 한국어로 표시합니다 🇰🇷', 'success');
+      } else {
+        if (btn) {
+          btn.classList.remove('bg-cyan-950', 'border-cyan-400', 'text-cyan-200');
+          btn.classList.add('text-cyan-300');
+        }
+        if (lbl) lbl.textContent = t('translateAll') || '한국어 번역 보기';
+        showToast('원문 언어로 복원되었습니다', 'info');
+      }
+      renderPrompts();
+    }
+
+    function sharePromptLink(id) {
+      const url = new URL(window.location.href);
+      url.hash = `q=${encodeURIComponent(id)}`;
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        showToast(t('toastLinkCopied'), 'info');
+      });
+    }
+
+    function toggleFavorite(id) {
+      if (favorites.has(id)) {
+        favorites.delete(id);
+        showToast('Removed from favorites', 'info');
+      } else {
+        favorites.add(id);
+        showToast('Added to favorites ⭐', 'success');
+      }
+      localStorage.setItem('prompt_studio_favs', JSON.stringify(Array.from(favorites)));
+      updateStats();
+      renderPrompts();
+    }
+
+    function filterByTag(tag) {
+      searchQuery = tag;
+      document.getElementById('search-input').value = tag;
+      document.getElementById('clear-search-btn').classList.remove('hidden');
+      updateUrlHashState();
+      renderPrompts();
+    }
+
+    function resetFilters() {
+      searchQuery = '';
+      activeCategory = 'all';
+      activeModel = 'all';
+      filterFavoritesOnly = false;
+      filterCustomOnly = false;
+      document.getElementById('search-input').value = '';
+      document.getElementById('clear-search-btn').classList.add('hidden');
+      updateCategoryPillsUI();
+      updateModelPillsUI();
+      updateUrlHashState();
+      renderPrompts();
+    }
+
+    // 10. VARIABLE FILLER ENGINE (Rule 9 & 13)
+    let activePromptForVariables = null;
+
+    function openVariableModal(id) {
+      const all = getAllPrompts();
+      activePromptForVariables = all.find(p => p.id === id);
+      if (!activePromptForVariables) return;
+
+      variableModalIsTranslated = globalTranslateToKo || translatedCards.has(id);
+      renderVariableModalContent();
+      openModal('variable-modal');
+    }
+
+    function toggleVariableModalLanguage() {
+      if (!activePromptForVariables) return;
+      variableModalIsTranslated = !variableModalIsTranslated;
+      renderVariableModalContent();
+    }
+
+    function renderVariableModalContent() {
+      if (!activePromptForVariables) return;
+      const p = activePromptForVariables;
+      
+      let title = p.title;
+      let template = p.prompt;
+
+      if (variableModalIsTranslated) {
+        if (CURATED_TRANSLATIONS[p.id]) {
+          title = CURATED_TRANSLATIONS[p.id].title;
+          template = CURATED_TRANSLATIONS[p.id].prompt;
+        } else if (translationCache.has(`card_${p.id}`)) {
+          const cached = translationCache.get(`card_${p.id}`);
+          title = cached.title || p.title;
+          template = cached.prompt || p.prompt;
+        }
+      }
+
+      document.getElementById('var-modal-title').textContent = `Customize: ${title}`;
+      const lblBtn = document.getElementById('lbl-var-lang-btn');
+      if (lblBtn) {
+        lblBtn.textContent = variableModalIsTranslated ? (t('viewOriginal') || '원문으로 보기') : (t('translatePrompt') || '한국어로 번역');
+      }
+
+      // Extract all [Variable] matches
+      const matches = [...new Set(template.match(/\[(.*?)\]/g) || [])];
+      const container = document.getElementById('variables-input-container');
+
+      if (matches.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-xs">This prompt doesn't contain any [placeholder] variables. You can copy it directly!</p>`;
+      } else {
+        container.innerHTML = matches.map((token) => {
+          const varName = token.replace(/\[|\]/g, '');
+          return `
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1 text-[11px]">${escapeHtml(varName)}</label>
+              <input type="text" data-token="${escapeHtml(token)}" placeholder="Enter ${escapeHtml(varName)}..." class="var-input w-full px-3 py-1.5 bg-slate-900 border border-cyber-border rounded-lg text-white text-xs focus:outline-none focus:border-cyan-500" />
+            </div>
+          `;
+        }).join('');
+      }
+
+      updateCompiledPrompt();
+
+      // Listen to variable input changes
+      container.querySelectorAll('.var-input').forEach(input => {
+        input.addEventListener('input', updateCompiledPrompt);
+      });
+
+      // Bind compiled copy button
+      document.getElementById('btn-copy-compiled').onclick = () => {
+        const compiledText = document.getElementById('compiled-prompt-preview').textContent;
+        navigator.clipboard.writeText(compiledText).then(() => {
+          showToast('Customized prompt copied to clipboard!', 'success');
+          closeModal('variable-modal');
+        });
+      };
+    }
+
+    function updateCompiledPrompt() {
+      if (!activePromptForVariables) return;
+      const p = activePromptForVariables;
+      let text = p.prompt;
+      if (variableModalIsTranslated) {
+        if (CURATED_TRANSLATIONS[p.id]) {
+          text = CURATED_TRANSLATIONS[p.id].prompt;
+        } else if (translationCache.has(`card_${p.id}`)) {
+          text = translationCache.get(`card_${p.id}`).prompt || p.prompt;
+        }
+      }
+
+      const inputs = document.querySelectorAll('.var-input');
+      inputs.forEach(input => {
+        const token = input.getAttribute('data-token');
+        const val = input.value.trim();
+        if (val) {
+          text = text.split(token).join(val);
+        }
+      });
+      document.getElementById('compiled-prompt-preview').textContent = text;
+    }
+
+    // 11. CUSTOM PROMPT CRUD & PASSWORD-PROTECTED SUBMISSION (Rule 3 & 13)
+    function togglePasswordVisibility(inputId, iconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+      if (!input || !icon) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.setAttribute('data-lucide', 'eye-off');
+      } else {
+        input.type = 'password';
+        icon.setAttribute('data-lucide', 'eye');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openNewPromptModal() {
+      document.getElementById('form-prompt-id').value = '';
+      document.getElementById('modal-prompt-title').textContent = '새 프롬프트 등록';
+      document.getElementById('prompt-form').reset();
+      const pwInput = document.getElementById('form-password');
+      if (pwInput) {
+        pwInput.value = '';
+        pwInput.type = 'password';
+        pwInput.required = true;
+      }
+      const eyeIcon = document.getElementById('form-password-eye-icon');
+      if (eyeIcon) eyeIcon.setAttribute('data-lucide', 'eye');
+      
+      const charCount = document.getElementById('char-count');
+      if (charCount) charCount.textContent = '0자';
+
+      checkDraftExists();
+      analyzePromptQuality();
+      openModal('prompt-modal');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function requestEditPrompt(id) {
+      const item = customPrompts.find(p => p.id === id);
+      if (!item) return;
+
+      if (!item.password) {
+        // Legacy prompt without password: allow editing directly and prompt to set one
+        editPrompt(id);
+        return;
+      }
+
+      openPasswordConfirmModal(item, 'edit');
+    }
+
+    function requestDeletePrompt(id) {
+      const item = customPrompts.find(p => p.id === id);
+      if (!item) return;
+
+      if (!item.password) {
+        if (confirm('이 프롬프트에는 설정된 비밀번호가 없습니다. 정말 삭제하시겠습니까?')) {
+          deletePromptDirect(id);
+        }
+        return;
+      }
+
+      openPasswordConfirmModal(item, 'delete');
+    }
+
+    // Alias for backward compatibility
+    function deletePrompt(id) {
+      requestDeletePrompt(id);
+    }
+
+    function openPasswordConfirmModal(item, action) {
+      document.getElementById('pw-confirm-prompt-id').value = item.id;
+      document.getElementById('pw-confirm-action').value = action;
+      document.getElementById('pw-confirm-target-title').textContent = item.title;
+      document.getElementById('pw-confirm-target-desc').textContent = item.desc || item.model;
+
+      const badge = document.getElementById('pw-confirm-action-badge');
+      const title = document.getElementById('pw-confirm-modal-title');
+      const subtitle = document.getElementById('pw-confirm-modal-subtitle');
+      const submitBtnText = document.getElementById('pw-confirm-submit-btn-text');
+      const submitBtn = document.getElementById('pw-confirm-submit-btn');
+      const iconWrap = document.getElementById('pw-confirm-icon-wrap');
+      const input = document.getElementById('pw-confirm-input');
+      const errorMsg = document.getElementById('pw-confirm-error');
+
+      // Reset states
+      input.value = '';
+      input.type = 'password';
+      input.classList.remove('border-rose-500');
+      errorMsg.classList.add('hidden');
+      const eyeIcon = document.getElementById('pw-confirm-eye-icon');
+      if (eyeIcon) eyeIcon.setAttribute('data-lucide', 'eye');
+
+      if (action === 'delete') {
+        badge.className = 'px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/20 text-rose-300 border border-rose-500/40 uppercase tracking-wider mt-0.5';
+        badge.textContent = '삭제 확인';
+        title.textContent = '삭제를 위한 비밀번호 확인';
+        subtitle.textContent = '프롬프트를 삭제하려면 글 작성 시 설정한 비밀번호를 입력해주세요';
+        submitBtnText.textContent = '삭제 실행';
+        submitBtn.className = 'px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold flex items-center gap-1.5 shadow-md shadow-rose-600/30 active:scale-95 transition-all';
+        iconWrap.className = 'w-8 h-8 rounded-lg bg-rose-950/80 border border-rose-500/40 flex items-center justify-center text-rose-400';
+      } else {
+        badge.className = 'px-2 py-0.5 rounded text-[10px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 uppercase tracking-wider mt-0.5';
+        badge.textContent = '수정 확인';
+        title.textContent = '수정을 위한 비밀번호 확인';
+        subtitle.textContent = '프롬프트를 수정하려면 글 작성 시 설정한 비밀번호를 입력해주세요';
+        submitBtnText.textContent = '수정 모달 열기';
+        submitBtn.className = 'px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold flex items-center gap-1.5 shadow-md shadow-cyan-600/30 active:scale-95 transition-all';
+        iconWrap.className = 'w-8 h-8 rounded-lg bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400';
+      }
+
+      openModal('password-confirm-modal');
+      if (window.lucide) lucide.createIcons();
+      setTimeout(() => input.focus(), 150);
+    }
+
+    function handlePasswordConfirmSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('pw-confirm-prompt-id').value;
+      const action = document.getElementById('pw-confirm-action').value;
+      const enteredPw = document.getElementById('pw-confirm-input').value.trim();
+      const errorMsg = document.getElementById('pw-confirm-error');
+      const input = document.getElementById('pw-confirm-input');
+
+      const item = customPrompts.find(p => p.id === id);
+      if (!item) {
+        closeModal('password-confirm-modal');
+        showToast('스니펫을 찾을 수 없습니다.', 'error');
+        return;
+      }
+
+      if (item.password !== enteredPw) {
+        errorMsg.classList.remove('hidden');
+        input.classList.add('border-rose-500');
+        input.focus();
+        showToast('비밀번호가 일치하지 않습니다.', 'error');
+        return;
+      }
+
+      // Password matches!
+      errorMsg.classList.add('hidden');
+      input.classList.remove('border-rose-500');
+      closeModal('password-confirm-modal');
+
+      if (action === 'delete') {
+        deletePromptDirect(id);
+      } else {
+        editPrompt(id);
+      }
+    }
+
+    function editPrompt(id) {
+      const item = customPrompts.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('form-prompt-id').value = item.id;
+      document.getElementById('modal-prompt-title').textContent = '프롬프트 스니펫 수정';
+      document.getElementById('form-title').value = item.title;
+      document.getElementById('form-model').value = item.model;
+      document.getElementById('form-category').value = item.category;
+      document.getElementById('form-desc').value = item.desc;
+      document.getElementById('form-prompt').value = item.prompt;
+      document.getElementById('form-tags').value = item.tags.join(', ');
+
+      const pwInput = document.getElementById('form-password');
+      if (pwInput) {
+        pwInput.value = item.password || '';
+        pwInput.required = true;
+      }
+
+      const charCount = document.getElementById('char-count');
+      if (charCount) charCount.textContent = `${item.prompt.length}자`;
+
+      // Hide draft recovery banner when editing existing prompt
+      const banner = document.getElementById('draft-recovery-banner');
+      if (banner) banner.classList.add('hidden');
+
+      analyzePromptQuality();
+      openModal('prompt-modal');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handlePromptFormSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('form-prompt-id').value;
+      const title = document.getElementById('form-title').value.trim();
+      const model = document.getElementById('form-model').value;
+      const category = document.getElementById('form-category').value;
+      const desc = document.getElementById('form-desc').value.trim();
+      const prompt = document.getElementById('form-prompt').value.trim();
+      const tags = document.getElementById('form-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+      const password = document.getElementById('form-password').value.trim();
+
+      if (!password) {
+        showToast('수정 및 삭제 시 사용할 비밀번호를 입력해주세요.', 'error');
+        document.getElementById('form-password').focus();
+        return;
+      }
+
+      if (id) {
+        // Edit existing prompt: create a snapshot in history
+        const idx = customPrompts.findIndex(p => p.id === id);
+        if (idx !== -1) {
+          const prev = customPrompts[idx];
+          const history = prev.history ? [...prev.history] : [];
+          history.unshift({
+            timestamp: new Date().toISOString(),
+            title: prev.title,
+            desc: prev.desc,
+            prompt: prev.prompt,
+            model: prev.model,
+            category: prev.category,
+            tags: prev.tags ? [...prev.tags] : []
+          });
+          if (history.length > 10) history.pop();
+
+          customPrompts[idx] = {
+            ...prev,
+            title, model, category, desc, prompt, tags, password,
+            history,
+            updatedAt: new Date().toISOString()
+          };
+          showToast('프롬프트가 수정되었습니다! 이전 버전이 히스토리에 기록되었습니다. ✏️', 'success');
+        }
+      } else {
+        // Create new prompt
+        const newSnippet = {
+          id: 'custom-' + Date.now(),
+          title, model, category, desc, prompt, tags,
+          password,
+          history: [],
+          copies: 0,
+          isCustom: true,
+          createdAt: new Date().toISOString().split('T')[0]
+        };
+        customPrompts.unshift(newSnippet);
+        showToast('새 프롬프트가 안전하게 등록되었습니다! 🔒', 'success');
+      }
+
+      clearFormDraft();
+      saveCustomPrompts();
+      closeModal('prompt-modal');
+      renderAll();
+    }
+
+    function deletePromptDirect(id) {
+      customPrompts = customPrompts.filter(p => p.id !== id);
+      favorites.delete(id);
+      saveCustomPrompts();
+      localStorage.setItem('prompt_studio_favs', JSON.stringify(Array.from(favorites)));
+      showToast('프롬프트가 안전하게 삭제되었습니다. 🗑️', 'info');
+      renderAll();
+    }
+
+    function saveCustomPrompts() {
+      localStorage.setItem('prompt_studio_custom', JSON.stringify(customPrompts));
+      updateStats();
+    }
+
+    // =========================================================================
+    // 11. DRAFT AUTO-SAVE & RECOVERY SYSTEM (임시 저장 및 복구)
+    // =========================================================================
+    function initDraftAutoSave() {
+      const formFields = ['form-title', 'form-model', 'form-category', 'form-desc', 'form-prompt', 'form-tags', 'form-password'];
+      formFields.forEach(id => {
+        const elem = document.getElementById(id);
+        if (elem) {
+          elem.addEventListener('input', () => {
+            const isEditing = Boolean(document.getElementById('form-prompt-id').value);
+            if (!isEditing) {
+              saveFormDraft();
+            }
+            if (id === 'form-prompt') {
+              const len = elem.value.length;
+              const charCountElem = document.getElementById('char-count');
+              if (charCountElem) charCountElem.textContent = `${len}자`;
+              analyzePromptQuality();
+            }
+          });
+        }
+      });
+    }
+
+    function saveFormDraft() {
+      const title = document.getElementById('form-title').value;
+      const model = document.getElementById('form-model').value;
+      const category = document.getElementById('form-category').value;
+      const desc = document.getElementById('form-desc').value;
+      const prompt = document.getElementById('form-prompt').value;
+      const tags = document.getElementById('form-tags').value;
+      const password = document.getElementById('form-password').value;
+
+      // Only save if there's actual content typed
+      if (!title && !prompt && !desc) return;
+
+      const draft = {
+        title, model, category, desc, prompt, tags, password,
+        savedAt: Date.now()
+      };
+      localStorage.setItem('prompt_studio_draft', JSON.stringify(draft));
+    }
+
+    function checkDraftExists() {
+      const banner = document.getElementById('draft-recovery-banner');
+      const timeElem = document.getElementById('draft-saved-time');
+      if (!banner) return;
+
+      const isEditing = Boolean(document.getElementById('form-prompt-id').value);
+      if (isEditing) {
+        banner.classList.add('hidden');
+        return;
+      }
+
+      const raw = localStorage.getItem('prompt_studio_draft');
+      if (!raw) {
+        banner.classList.add('hidden');
+        return;
+      }
+
+      try {
+        const draft = JSON.parse(raw);
+        if (draft && (draft.title || draft.prompt || draft.desc)) {
+          const date = new Date(draft.savedAt || Date.now());
+          const timeStr = `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+          if (timeElem) timeElem.textContent = `${timeStr} 저장본`;
+          banner.classList.remove('hidden');
+        } else {
+          banner.classList.add('hidden');
+        }
+      } catch {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function restoreDraft() {
+      const raw = localStorage.getItem('prompt_studio_draft');
+      if (!raw) return;
+      try {
+        const draft = JSON.parse(raw);
+        if (draft.title) document.getElementById('form-title').value = draft.title;
+        if (draft.model) document.getElementById('form-model').value = draft.model;
+        if (draft.category) document.getElementById('form-category').value = draft.category;
+        if (draft.desc) document.getElementById('form-desc').value = draft.desc;
+        if (draft.prompt) {
+          document.getElementById('form-prompt').value = draft.prompt;
+          const charCount = document.getElementById('char-count');
+          if (charCount) charCount.textContent = `${draft.prompt.length}자`;
+        }
+        if (draft.tags) document.getElementById('form-tags').value = draft.tags;
+        if (draft.password) document.getElementById('form-password').value = draft.password;
+
+        const banner = document.getElementById('draft-recovery-banner');
+        if (banner) banner.classList.add('hidden');
+
+        analyzePromptQuality();
+        showToast('작성 중이던 임시 저장본을 복원했습니다! 📝', 'success');
+      } catch (err) {
+        console.error('Draft restore failed', err);
+      }
+    }
+
+    function dismissDraft() {
+      localStorage.removeItem('prompt_studio_draft');
+      const banner = document.getElementById('draft-recovery-banner');
+      if (banner) banner.classList.add('hidden');
+      showToast('임시 저장본을 비웠습니다.', 'info');
+    }
+
+    function clearFormDraft() {
+      localStorage.removeItem('prompt_studio_draft');
+      const banner = document.getElementById('draft-recovery-banner');
+      if (banner) banner.classList.add('hidden');
+    }
+
+    // =========================================================================
+    // 11.1 PROMPT QUALITY DIAGNOSTIC & SMART POLISHER (품질 진단기 및 자동 보완)
+    // =========================================================================
+    function analyzePromptQuality() {
+      const promptInput = document.getElementById('form-prompt');
+      if (!promptInput) return;
+      const text = promptInput.value.trim();
+
+      const hasPersona = /(역할|전문가|당신은|엔지니어|컨설턴트|작성자|마스터|분석가|act as|you are|expert|engineer|specialist|master|role)/i.test(text);
+      const hasObjective = text.length >= 20 && /(작성|설명|분석|요약|생성|제안|도출|구현|설계|해줘|하세요|write|explain|create|analyze|generate|provide|build)/i.test(text);
+      const hasConstraints = /(규칙|조건|출력|형식|단,|제외|단계별|마크다운|테이블|json|bullet|rules|constraints|format|do not|avoid|must|step)/i.test(text);
+      const hasVariables = /\[(.*?)\]/.test(text);
+
+      let score = 0;
+      if (text.length > 5) score += 20;
+      if (hasPersona) score += 20;
+      if (hasObjective) score += 25;
+      if (hasConstraints) score += 20;
+      if (hasVariables) score += 15;
+
+      const scoreNumElem = document.getElementById('quality-score-num');
+      const scoreBarElem = document.getElementById('quality-score-bar');
+
+      if (scoreNumElem) scoreNumElem.textContent = `${score}점`;
+      if (scoreBarElem) {
+        scoreBarElem.style.width = `${Math.min(100, score)}%`;
+        if (score >= 80) {
+          scoreBarElem.className = 'h-full rounded-full transition-all duration-300 bg-gradient-to-r from-emerald-500 to-cyan-400 shadow-sm shadow-emerald-500/50';
+        } else if (score >= 50) {
+          scoreBarElem.className = 'h-full rounded-full transition-all duration-300 bg-gradient-to-r from-cyan-500 to-purple-500';
+        } else {
+          scoreBarElem.className = 'h-full rounded-full transition-all duration-300 bg-gradient-to-r from-amber-500 to-rose-500';
+        }
+      }
+
+      updateCriterionChip('quality-criterion-persona', hasPersona);
+      updateCriterionChip('quality-criterion-objective', hasObjective);
+      updateCriterionChip('quality-criterion-constraints', hasConstraints);
+      updateCriterionChip('quality-criterion-variables', hasVariables);
+    }
+
+    function updateCriterionChip(elemId, isActive) {
+      const chip = document.getElementById(elemId);
+      if (!chip) return;
+      if (isActive) {
+        chip.className = 'px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 flex items-center gap-1 transition-all shadow-sm';
+      } else {
+        chip.className = 'px-2 py-0.5 rounded-full text-[10px] font-normal bg-slate-900 text-slate-400 border border-slate-700/60 flex items-center gap-1 transition-all';
+      }
+    }
+
+    function autoPolishPrompt() {
+      const promptInput = document.getElementById('form-prompt');
+      if (!promptInput) return;
+      const current = promptInput.value.trim();
+
+      const polished = `당신은 해당 분야 최고의 수석 전문가 및 전문 컨설턴트입니다.
+
+[핵심 목표 및 요청 과제]
+${current || '[해결하고자 하는 구체적인 목표나 질의 내용을 입력하세요]'}
+
+[필수 원칙 및 품질 기준]
+1. 기본 가정을 면밀히 검토하고 제1원칙에 따라 논리적으로 접근하세요.
+2. 실무에 바로 적용 가능한 완성도 높은 구체적 산출물을 제시하세요.
+3. 발생 가능한 잠재적 엣지 케이스 및 주의사항을 사전에 짚어주세요.
+4. 불필요한 서론이나 수식어는 배제하고 본론에 집중하세요.
+
+[출력 형식]
+- 마크다운(Markdown) 소제목 및 글머리 기호(Bullet points) 구조화`;
+
+      promptInput.value = polished;
+      const charCount = document.getElementById('char-count');
+      if (charCount) charCount.textContent = `${polished.length}자`;
+
+      analyzePromptQuality();
+      showToast('전문가 표준 구조(역할·목표·원칙·형식)로 자동 보완되었습니다! ✨', 'success');
+      promptInput.focus();
+    }
+
+    // =========================================================================
+    // 11.2 AI PLAYGROUND MODAL CONTROLLER (즉석 테스트 실행기)
+    // =========================================================================
+    function openPlaygroundModal() {
+      openModal('playground-modal');
+      updatePgCharCount();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openPlaygroundWithPrompt(id) {
+      const all = getAllPrompts();
+      const item = all.find(p => p.id === id);
+      if (!item) return;
+
+      let promptText = item.prompt;
+      const isCardTranslated = globalTranslateToKo || translatedCards.has(id);
+      if (isCardTranslated) {
+        if (CURATED_TRANSLATIONS[id]) {
+          promptText = CURATED_TRANSLATIONS[id].prompt;
+        } else if (translationCache.has(`card_${id}`)) {
+          promptText = translationCache.get(`card_${id}`).prompt || item.prompt;
+        }
+      }
+
+      const input = document.getElementById('pg-prompt-input');
+      if (input) input.value = promptText;
+
+      const modelSelect = document.getElementById('pg-model-select');
+      if (modelSelect) {
+        if (item.model === 'ChatGPT') modelSelect.value = 'ChatGPT (GPT-4o)';
+        else if (item.model === 'Claude') modelSelect.value = 'Claude 3.5 Sonnet';
+        else if (item.model === 'Gemini') modelSelect.value = 'Gemini 2.0 Flash';
+        else if (item.model === 'DeepSeek') modelSelect.value = 'DeepSeek R1';
+      }
+
+      updatePgCharCount();
+      openModal('playground-modal');
+      showToast(`'${item.title}' 프롬프트를 테스트실에 불러왔습니다. ▶️ 실행을 눌러보세요!`, 'info');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function updatePgCharCount() {
+      const input = document.getElementById('pg-prompt-input');
+      const counter = document.getElementById('pg-prompt-char-count');
+      if (input && counter) {
+        counter.textContent = `${input.value.length}자`;
+      }
+    }
+
+    function loadSampleToPlayground(type) {
+      const input = document.getElementById('pg-prompt-input');
+      if (!input) return;
+
+      if (type === 'code') {
+        input.value = `전문 시니어 프론트엔드 엔지니어로서 아래 React 컴포넌트의 가독성, 불필요한 리렌더링, 엣지 케이스를 검토하고 개선된 클린 코드를 제안해주세요:
+
+\`\`\`tsx
+function UserProfile({ userId }) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch('/api/user/' + userId).then(r => r.json()).then(setData);
+  }, [userId]);
+  return <div>{data?.name}</div>;
+}
+\`\`\``;
+        const modelSelect = document.getElementById('pg-model-select');
+        if (modelSelect) modelSelect.value = 'Claude 3.5 Sonnet';
+        const styleSelect = document.getElementById('pg-style-select');
+        if (styleSelect) styleSelect.value = 'code';
+      } else {
+        input.value = `B2B AI 업무 자동화 솔루션을 론칭하는 스타트업입니다.
+타깃 고객(팀장, C-Level)의 페인 포인트(반복 수작업, 시간 낭비)를 해결하고 업무 생산성을 5배 높여준다는 강력한 가치 제안을 담은 랜딩페이지 메인 카피 3가지를 제안해주세요.`;
+        const modelSelect = document.getElementById('pg-model-select');
+        if (modelSelect) modelSelect.value = 'ChatGPT (GPT-4o)';
+        const styleSelect = document.getElementById('pg-style-select');
+        if (styleSelect) styleSelect.value = 'creative';
+      }
+
+      updatePgCharCount();
+      showToast('예제 프롬프트가 로드되었습니다.', 'info');
+    }
+
+    function executePlaygroundTest() {
+      const input = document.getElementById('pg-prompt-input');
+      const text = input ? input.value.trim() : '';
+
+      if (!text) {
+        showToast('테스트할 프롬프트를 먼저 입력해주세요.', 'error');
+        if (input) input.focus();
+        return;
+      }
+
+      const model = document.getElementById('pg-model-select').value;
+      const style = document.getElementById('pg-style-select').value;
+      const runBtn = document.getElementById('btn-run-playground');
+      const runBtnText = document.getElementById('btn-run-playground-text');
+      const outDisplay = document.getElementById('pg-output-display');
+      const statusBadge = document.getElementById('pg-status-badge');
+      const metricsWrap = document.getElementById('pg-metrics');
+      const metricTime = document.getElementById('pg-metric-time');
+      const metricTokens = document.getElementById('pg-metric-tokens');
+
+      // Setup loading
+      runBtn.disabled = true;
+      runBtn.classList.add('opacity-70');
+      runBtnText.textContent = '⏳ AI 연산 및 실시간 스트리밍 중...';
+      statusBadge.textContent = '스트리밍 중';
+      statusBadge.className = 'px-2 py-0.2 rounded text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-mono animate-pulse';
+      metricsWrap.classList.add('hidden');
+      outDisplay.innerHTML = '';
+
+      // Construct domain-adapted simulated response based on user's input and style
+      const responseTemplate = generateSimulatedAIResponse(text, model, style);
+      const chunks = responseTemplate.split(/(?<=[.!?\n]|```)/);
+      let currentChunkIdx = 0;
+      let accumulatedText = '';
+      const startTime = performance.now();
+
+      if (playgroundStreamTimeout) clearInterval(playgroundStreamTimeout);
+
+      playgroundStreamTimeout = setInterval(() => {
+        if (currentChunkIdx < chunks.length) {
+          accumulatedText += chunks[currentChunkIdx];
+          outDisplay.innerHTML = highlightVariables(escapeHtml(accumulatedText));
+          outDisplay.scrollTop = outDisplay.scrollHeight;
+          currentChunkIdx++;
+        } else {
+          // Finished stream
+          clearInterval(playgroundStreamTimeout);
+          playgroundStreamTimeout = null;
+          const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+          const estimatedTokens = Math.round(accumulatedText.length / 2.8);
+
+          runBtn.disabled = false;
+          runBtn.classList.remove('opacity-70');
+          runBtnText.textContent = '▶️ AI 프롬프트 즉석 테스트 재실행';
+          statusBadge.textContent = '완료';
+          statusBadge.className = 'px-2 py-0.2 rounded text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-500/40 font-mono';
+          
+          if (metricTime) metricTime.textContent = `⚡ ${elapsed}s`;
+          if (metricTokens) metricTokens.textContent = `🔤 ~${estimatedTokens} tok`;
+          metricsWrap.classList.remove('hidden');
+
+          showToast(`'${model}' 가상 응답 생성이 성공적으로 완료되었습니다! ⚡`, 'success');
+        }
+      }, 45);
+    }
+
+    function generateSimulatedAIResponse(prompt, model, style) {
+      const snippetSummary = prompt.length > 50 ? prompt.slice(0, 50) + '...' : prompt;
+      
+      if (style === 'code') {
+        return `### 🛠️ [${model}] 실무 엔지니어링 분석 및 리팩토링 제안
+
+요청하신 프롬프트 내용에 대한 기술적 검토 및 구현 코드입니다:
+
+\`\`\`typescript
+// 💡 안정성, 성능, 에러 핸들링이 강화된 프로덕션 코드
+export async function handleOptimizedExecution(params: { input: string }) {
+  try {
+    const sanitized = params.input.trim();
+    if (!sanitized) throw new Error("Invalid payload");
+    
+    // 성능 최적화: 불필요한 오버헤드 최소화 및 비동기 처리
+    return {
+      status: "success",
+      data: sanitized,
+      timestamp: Date.now()
+    };
+  } catch (error) {
+    console.error("[Execution Error]:", error);
+    throw error;
+  }
+}
+\`\`\`
+
+**주요 개선 및 검토 사항:**
+1. **타입 안정성**: 명시적 타입 정의로 런타임 잠재 결함 제거
+2. **에러 바운더리**: 예외 상황 발생 시 우아한(Graceful) 폴백 제공
+3. **확장성**: 추후 다른 비즈니스 로직 연동이 용이하도록 모듈화 분리`;
+      }
+
+      if (style === 'creative') {
+        return `### 🚀 [${model}] 창의적 콘셉트 및 메시지 제안
+
+**요청 아이디어 핵심:** "${snippetSummary}"
+
+**제안 카피 옵션 1 (직관적 & 강력한 임팩트)**
+> "반복되는 수작업은 AI에게 맡기고, 당신의 팀은 가장 위대한 가치에만 집중하세요."
+
+**제안 카피 옵션 2 (데이터 및 실리 중심)**
+> "매주 20시간의 업무 낭비를 단 한 번의 설정으로 회수하는 차세대 워크플로우."
+
+**제안 카피 옵션 3 (혁신 및 미래지향)**
+> "앞서가는 기업들이 일하는 방식. 비즈니스의 모든 프로세스를 자동화합니다."
+
+💡 **활용 팁:** 위 문구를 랜딩페이지 히어로 영역 상단 폰트 크기 48px 이상으로 배치하고, 즉시 무료 체험 CTA 버튼과 조합했을 때 전환율이 극대화됩니다.`;
+      }
+
+      if (style === 'concise') {
+        return `### ⚡ [${model}] 핵심 요약 및 실행 방안
+
+- **핵심 맥락**: ${snippetSummary}
+- **우선 순위 1**: 즉시 실행 가능한 퀵윈(Quick Win) 과제 선정 및 검증
+- **우선 순위 2**: 자동화 가능한 규칙 기반 워크플로우 표준화
+- **리스크 관리**: 예외 케이스 발생 시 수동 승인 루프 유지
+- **기대 성과**: 프로세스 소요 시간 70% 단축 및 휴먼 에러 제로화 달성`;
+      }
+
+      // Default 'detailed'
+      return `### 🎯 [${model}] 정밀 분석 및 단계별 솔루션
+
+입력하신 프롬프트 템플릿의 지시사항을 분석하여 다음과 같이 체계적인 솔루션을 제시합니다:
+
+#### 1. 핵심 요건 진단
+제시해주신 과제("${snippetSummary}")는 명확한 맥락과 제약조건을 토대로 접근할 때 가장 높은 품질의 결과물을 도출할 수 있습니다.
+
+#### 2. 단계별 실행 로드맵
+1. **사전 준비 (Analysis)**: 요구사항과 입력 데이터의 정합성을 교차 검증합니다.
+2. **본 실행 (Execution)**: 우선순위에 따라 모듈별로 순차 처리하며 불필요한 군더더기를 배제합니다.
+3. **사후 검증 (Review)**: 엣지 케이스 및 발생 가능한 반례를 사전에 차단합니다.
+
+#### 3. 최종 권장사항
+이 프롬프트는 실제 **ChatGPT**, **Claude**, **Gemini**에 적용 시 각 모델의 튜닝 특성에 맞춰 탁월한 성능을 발휘합니다. 외부 AI로 복사하여 실무에 즉시 적용해보세요!`;
+    }
+
+    function copyPlaygroundOutput() {
+      const outDisplay = document.getElementById('pg-output-display');
+      const text = outDisplay ? outDisplay.textContent.trim() : '';
+      if (!text || text.startsWith('왼쪽에서 프롬프트를 확인하고')) {
+        showToast('복사할 AI 응답 결과가 없습니다.', 'error');
+        return;
+      }
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btnText = document.getElementById('btn-copy-pg-output-text');
+        const prev = btnText.textContent;
+        btnText.textContent = '복사 완료!';
+        showToast('AI 테스트 응답이 클립보드에 복사되었습니다!', 'success');
+        setTimeout(() => {
+          btnText.textContent = prev;
+        }, 1800);
+      });
+    }
+
+    // =========================================================================
+    // 11.3 PROMPT VERSION HISTORY MODAL CONTROLLER (수정 버전 기록)
+    // =========================================================================
+    function openHistoryModal(id) {
+      const item = customPrompts.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('history-target-title').textContent = item.title;
+      const listContainer = document.getElementById('history-list-container');
+      const history = item.history || [];
+
+      if (history.length === 0) {
+        listContainer.innerHTML = `
+          <div class="py-8 text-center text-slate-400">
+            <i data-lucide="history" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+            <p class="font-semibold text-white mb-1">수정 기록이 없습니다</p>
+            <p class="text-[11px] text-slate-500">프롬프트를 수정할 때마다 이전 버전이 이곳에 자동으로 보관됩니다.</p>
+          </div>
+        `;
+      } else {
+        listContainer.innerHTML = history.map((ver, idx) => {
+          const date = new Date(ver.timestamp || Date.now());
+          const dateStr = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+          return `
+            <div class="p-3 bg-slate-950/70 border border-cyber-border rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="px-1.5 py-0.5 rounded text-[10px] bg-purple-950 text-purple-300 border border-purple-500/30 font-semibold font-mono">v${history.length - idx}</span>
+                  <span class="text-slate-400 text-[10px]">${dateStr}</span>
+                </div>
+                <button type="button" onclick="restoreVersion('${item.id}', ${idx})" class="px-2 py-1 rounded bg-purple-600 hover:bg-purple-500 text-white text-[11px] font-semibold flex items-center gap-1 transition-all active:scale-95 shadow-sm">
+                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+                  <span>이 버전으로 복구</span>
+                </button>
+              </div>
+              <div class="text-white font-medium text-xs">${escapeHtml(ver.title)}</div>
+              <div class="bg-slate-900/90 p-2 rounded-lg font-mono text-[11px] text-slate-300 max-h-20 overflow-y-auto leading-relaxed border border-slate-800">
+                ${escapeHtml(ver.prompt)}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      openModal('history-modal');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function restoreVersion(promptId, historyIdx) {
+      const item = customPrompts.find(p => p.id === promptId);
+      if (!item || !item.history || !item.history[historyIdx]) return;
+
+      const targetVersion = item.history[historyIdx];
+
+      if (confirm(`'${targetVersion.title}' 버전으로 스니펫 내용을 복구하시겠습니까? (현재 내용은 히스토리에 다시 보존됩니다)`)) {
+        // Save current as a new snapshot first
+        item.history.unshift({
+          timestamp: new Date().toISOString(),
+          title: item.title,
+          desc: item.desc,
+          prompt: item.prompt,
+          model: item.model,
+          category: item.category,
+          tags: item.tags ? [...item.tags] : []
+        });
+
+        // Restore
+        item.title = targetVersion.title;
+        item.desc = targetVersion.desc;
+        item.prompt = targetVersion.prompt;
+        item.model = targetVersion.model;
+        item.category = targetVersion.category;
+        item.tags = targetVersion.tags;
+        item.updatedAt = new Date().toISOString();
+
+        saveCustomPrompts();
+        closeModal('history-modal');
+        renderAll();
+        showToast('선택한 이전 버전으로 성공적으로 복구되었습니다! 🔄', 'success');
+      }
+    }
+
+    // =========================================================================
+    // 11.4 MOBILE BOTTOM NAVIGATION ACTIONS (모바일 퀵 액션)
+    // =========================================================================
+    function mobileNavAction(tab) {
+      if (tab === 'all') {
+        activeCategory = 'all';
+        activeModel = 'all';
+        filterFavoritesOnly = false;
+        filterCustomOnly = false;
+        searchQuery = '';
+        activeTagFilter = null;
+        document.getElementById('search-input').value = '';
+        document.getElementById('clear-search-btn').classList.add('hidden');
+        updateCategoryPillsUI();
+        updateModelFilterUI();
+        updateFilterButtonsUI();
+        updateUrlHashState();
+        renderAll();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showToast('전체 프롬프트 목록으로 이동했습니다.', 'info');
+      } else if (tab === 'favs') {
+        filterFavoritesOnly = !filterFavoritesOnly;
+        filterCustomOnly = false;
+        updateFilterButtonsUI();
+        renderPrompts();
+        const grid = document.getElementById('prompts-grid');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth' });
+        showToast(filterFavoritesOnly ? '⭐ 즐겨찾기 스니펫만 모아봅니다.' : '전체 스니펫 보기로 전환했습니다.', 'info');
+      }
+    }
+
+    function updateFilterButtonsUI() {
+      const favBtn = document.getElementById('filter-fav-btn');
+      const customBtn = document.getElementById('filter-custom-btn');
+      if (favBtn) {
+        favBtn.classList.toggle('bg-amber-500/20', filterFavoritesOnly);
+        favBtn.classList.toggle('border-amber-500/50', filterFavoritesOnly);
+        favBtn.classList.toggle('text-amber-300', filterFavoritesOnly);
+      }
+      if (customBtn) {
+        customBtn.classList.toggle('bg-purple-500/20', filterCustomOnly);
+        customBtn.classList.toggle('border-purple-500/50', filterCustomOnly);
+        customBtn.classList.toggle('text-purple-300', filterCustomOnly);
+      }
+    }
+
+    // 12. PRESET EXPORT & IMPORT JSON (Rule 15)
+    function exportJSON(type) {
+      let dataToExport = [];
+      if (type === 'custom') {
+        dataToExport = customPrompts;
+      } else {
+        dataToExport = getAllPrompts();
+      }
+
+      const jsonStr = JSON.stringify(dataToExport, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `prompt-studio-${type}-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Exported ${dataToExport.length} prompts to JSON!`, 'success');
+    }
+
+    function importJSON() {
+      const text = document.getElementById('import-json-text').value.trim();
+      if (!text) {
+        showToast('Please paste JSON data first.', 'error');
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(text);
+        if (!Array.isArray(parsed)) {
+          throw new Error('Data must be an array of prompts');
+        }
+
+        let importedCount = 0;
+        parsed.forEach(item => {
+          if (item.title && item.prompt) {
+            customPrompts.unshift({
+              id: 'imported-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+              title: item.title,
+              model: item.model || 'General',
+              category: item.category || 'dev',
+              tags: Array.isArray(item.tags) ? item.tags : ['imported'],
+              desc: item.desc || 'Imported prompt snippet',
+              prompt: item.prompt,
+              copies: item.copies || 0,
+              isCustom: true,
+              createdAt: new Date().toISOString().split('T')[0]
+            });
+            importedCount++;
+          }
+        });
+
+        saveCustomPrompts();
+        document.getElementById('import-json-text').value = '';
+        closeModal('io-modal');
+        renderAll();
+        showToast(`Successfully imported ${importedCount} prompts!`, 'success');
+      } catch (err) {
+        console.error('Import error:', err);
+        showToast('Invalid JSON structure. Please check the format.', 'error');
+      }
+    }
+
+    // 13. FEEDBACK SUBMISSION (Rule 14)
+    function submitFeedback(e) {
+      e.preventDefault();
+      showToast('Thank you for your feedback! It helps improve PromptStudio.', 'success');
+      closeModal('feedback-modal');
+      e.target.reset();
+    }
+
+    // 14. TOAST NOTIFICATION SYSTEM (Rule 16)
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const iconMap = {
+        success: 'check-circle',
+        error: 'alert-triangle',
+        info: 'info'
+      };
+
+      const colorMap = {
+        success: 'border-emerald-500/50 bg-slate-900/95 text-emerald-300',
+        error: 'border-rose-500/50 bg-slate-900/95 text-rose-300',
+        info: 'border-cyan-500/50 bg-slate-900/95 text-cyan-300'
+      };
+
+      toast.className = `flex items-center gap-2.5 px-4 py-3 rounded-xl border ${colorMap[type]} shadow-2xl backdrop-blur-md text-xs font-medium transform transition-all duration-300 translate-y-4 opacity-0 pointer-events-auto`;
+      toast.innerHTML = `
+        <i data-lucide="${iconMap[type]}" class="w-4 h-4 shrink-0"></i>
+        <span>${escapeHtml(message)}</span>
+      `;
+
+      container.appendChild(toast);
+      if (window.lucide) lucide.createIcons();
+
+      // Animate in
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      });
+
+      // Auto dismiss
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 2600);
+    }
+
+    // 14.1 AI PROMPT TRANSLATOR & OPTIMIZER CONTROLLER
+    const TRANSLATOR_PRESETS = {
+      code: {
+        sourceLang: 'ko',
+        targetLang: 'en',
+        mode: 'optimize',
+        text: "전문 시니어 소프트웨어 엔지니어로서 제공된 React TypeScript 컴포넌트의 렌더링 성능 최적화, 메모이제이션(useMemo/useCallback), 불필요한 리렌더링 제거 방안 및 리팩토링 코드를 제안해줘."
+      },
+      copy: {
+        sourceLang: 'ko',
+        targetLang: 'en',
+        mode: 'optimize',
+        text: "AI 자동화 솔루션 SaaS 스타트업의 랜딩 페이지 히어로 카피를 작성해줘. B2B 고객의 반복 업무 시간을 80% 줄여준다는 가치 제안과 강력한 CTA를 포함해줘."
+      },
+      midjourney: {
+        sourceLang: 'ko',
+        targetLang: 'en',
+        mode: 'midjourney',
+        text: "네온 불빛이 번지는 비 오는 사이버펑크 서울 뒷골목, 투명한 우산을 쓴 사이보그 여성 인물 사진, 반사광, 볼륨 조명, 극적인 림라이트, 초고해상도 실사"
+      },
+      analysis: {
+        sourceLang: 'ko',
+        targetLang: 'en',
+        mode: 'optimize',
+        text: "신규 시장 진입을 위한 경쟁사 약점 및 고객 불만 사항을 제1원칙 프레임워크로 분석하고, 차별화 전략과 3단계 실행 로드맵을 수립해줘."
+      }
+    };
+
+    function loadTranslatorPreset(key) {
+      const preset = TRANSLATOR_PRESETS[key];
+      if (!preset) return;
+      document.getElementById('trans-source-lang').value = preset.sourceLang;
+      document.getElementById('trans-target-lang').value = preset.targetLang;
+      document.getElementById('trans-mode').value = preset.mode;
+      const input = document.getElementById('trans-input-text');
+      input.value = preset.text;
+      document.getElementById('trans-char-count').textContent = `${preset.text.length}자`;
+      showToast('예시 템플릿이 로드되었습니다. 번역 실행 버튼을 눌러보세요!', 'info');
+    }
+
+    function swapTranslatorLanguages() {
+      const srcSelect = document.getElementById('trans-source-lang');
+      const tgtSelect = document.getElementById('trans-target-lang');
+      const curSrc = srcSelect.value;
+      const curTgt = tgtSelect.value;
+      
+      if (curSrc !== 'auto') {
+        srcSelect.value = curTgt;
+        tgtSelect.value = curSrc;
+      }
+
+      // Also swap text if output exists
+      const outElem = document.getElementById('trans-output-text');
+      const outText = outElem.textContent.trim();
+      if (outText && !outText.startsWith('번역 버튼을') && !outText.startsWith('AI 프롬프트 번역 및')) {
+        const inElem = document.getElementById('trans-input-text');
+        inElem.value = outText;
+        document.getElementById('trans-char-count').textContent = `${outText.length}자`;
+        outElem.innerHTML = '<span class="text-slate-500 italic">번역 버튼을 누르면 최적화된 결과 프롬프트가 이곳에 출력됩니다.</span>';
+        document.getElementById('trans-result-count').textContent = '0자';
+      }
+    }
+
+    function clearTranslatorInput() {
+      document.getElementById('trans-input-text').value = '';
+      document.getElementById('trans-char-count').textContent = '0자';
+      document.getElementById('trans-output-text').innerHTML = '<span class="text-slate-500 italic">번역 버튼을 누르면 최적화된 결과 프롬프트가 이곳에 출력됩니다.</span>';
+      document.getElementById('trans-result-count').textContent = '0자';
+      document.getElementById('trans-status-badge').classList.add('hidden');
+    }
+
+    async function executeTranslation() {
+      const inputElem = document.getElementById('trans-input-text');
+      const text = inputElem.value.trim();
+      if (!text) {
+        showToast('번역하거나 최적화할 프롬프트를 먼저 입력해주세요.', 'error');
+        inputElem.focus();
+        return;
+      }
+
+      const sourceLang = document.getElementById('trans-source-lang').value;
+      const targetLang = document.getElementById('trans-target-lang').value;
+      const mode = document.getElementById('trans-mode').value;
+      const runBtn = document.getElementById('btn-run-translate');
+      const runText = document.getElementById('btn-run-translate-text');
+      const outElem = document.getElementById('trans-output-text');
+      const statusBadge = document.getElementById('trans-status-badge');
+
+      // Loading state
+      runBtn.disabled = true;
+      runBtn.classList.add('opacity-80');
+      runText.textContent = '번역 및 최적화 진행 중...';
+      outElem.innerHTML = `
+        <div class="flex items-center gap-2 text-cyan-400 py-4 font-sans text-xs">
+          <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
+          <span>AI 프롬프트 번역 및 구조 최적화 처리 중입니다...</span>
+        </div>
+      `;
+      if (window.lucide) lucide.createIcons();
+
+      try {
+        let finalResult = '';
+        
+        // 1. Base translation
+        const translatedBase = await translateText(text, targetLang, sourceLang);
+        
+        if (mode === 'direct') {
+          finalResult = translatedBase;
+        } else if (mode === 'midjourney') {
+          // Midjourney prompt engineering formatting
+          finalResult = `${translatedBase}, Hasselblad 80mm lens, photorealistic textures, cinematic volumetric lighting, 8k resolution, award winning photography --ar 16:9 --v 6.0 --style raw`;
+        } else {
+          // AI Prompt Engineering Optimization Mode
+          if (targetLang === 'en') {
+            finalResult = `Act as an elite, world-class subject matter expert. 
+
+[Objective & Core Task]
+${translatedBase}
+
+[Execution Guidelines & Standards]
+1. Deep Analysis: Unpack the underlying assumptions and approach this with first-principles clarity.
+2. Step-by-Step Delivery: Structure the output with logical flow, clear headings, and concrete examples.
+3. Edge Cases & Polish: Proactively address potential pitfalls, caveats, or trade-offs.
+4. Output Format: Provide a clean, production-ready response with high information density.`;
+          } else {
+            finalResult = `당신은 해당 분야 최고의 수석 전문가입니다.
+
+[핵심 목표 및 요청 과제]
+${translatedBase}
+
+[실행 원칙 및 품질 기준]
+1. 심층 분석: 기본 가정을 면밀히 검토하고 제1원칙에 따라 논리적으로 접근하세요.
+2. 단계별 구조화: 명확한 소제목과 구체적인 예시를 바탕으로 체계적으로 작성하세요.
+3. 엣지 케이스 점검: 발생 가능한 잠재적 문제점, 주의사항 및 트레이드오프를 사전에 짚어주세요.
+4. 산출물 형식: 즉시 실무에 적용 가능한 완성도 높은 형태로 제시하세요.`;
+          }
+        }
+
+        // Render result with variable highlights
+        outElem.innerHTML = highlightVariables(escapeHtml(finalResult));
+        document.getElementById('trans-result-count').textContent = `${finalResult.length}자`;
+        statusBadge.classList.remove('hidden');
+        showToast('번역 및 프롬프트 최적화가 완료되었습니다! ✨', 'success');
+      } catch (err) {
+        console.error('Translation error:', err);
+        outElem.textContent = '번역 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+        showToast('번역 중 오류가 발생했습니다.', 'error');
+      } finally {
+        runBtn.disabled = false;
+        runBtn.classList.remove('opacity-80');
+        runText.textContent = '번역 및 최적화 실행';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function copyTranslatedResult() {
+      const outElem = document.getElementById('trans-output-text');
+      const text = outElem.textContent.trim();
+      if (!text || text.startsWith('번역 버튼을') || text.startsWith('AI 프롬프트 번역 및')) {
+        showToast('복사할 결과 텍스트가 없습니다.', 'error');
+        return;
+      }
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btnText = document.getElementById('btn-copy-trans-text');
+        const prev = btnText.textContent;
+        btnText.textContent = '복사 완료!';
+        showToast('번역된 프롬프트가 클립보드에 복사되었습니다!', 'success');
+        setTimeout(() => {
+          btnText.textContent = prev;
+        }, 1800);
+      });
+    }
+
+    function saveTranslatedAsSnippet() {
+      const outElem = document.getElementById('trans-output-text');
+      const promptText = outElem.textContent.trim();
+      if (!promptText || promptText.startsWith('번역 버튼을') || promptText.startsWith('AI 프롬프트 번역 및')) {
+        showToast('저장할 번역 결과가 없습니다. 먼저 번역을 실행해주세요.', 'error');
+        return;
+      }
+
+      const inText = document.getElementById('trans-input-text').value.trim();
+      const targetLang = document.getElementById('trans-target-lang').value;
+      const firstLine = inText.split('\n')[0].slice(0, 30);
+      const title = firstLine ? `[${targetLang.toUpperCase()}] ${firstLine}` : `[${targetLang.toUpperCase()}] Translated Prompt`;
+
+      // Open prompt modal pre-filled with translated content so user can set a password
+      closeModal('translator-modal');
+      openNewPromptModal();
+      document.getElementById('form-title').value = title;
+      document.getElementById('form-model').value = 'ChatGPT';
+      document.getElementById('form-category').value = 'productivity';
+      document.getElementById('form-desc').value = `AI Translator generated prompt snippet (${targetLang.toUpperCase()})`;
+      document.getElementById('form-prompt').value = promptText;
+      document.getElementById('form-tags').value = `translated, ${targetLang}, optimized`;
+      setTimeout(() => {
+        const pw = document.getElementById('form-password');
+        if (pw) {
+          pw.focus();
+          pw.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 250);
+      showToast('스니펫 저장을 위해 수정/삭제용 비밀번호를 입력해주세요. 🔒', 'info');
+    }
+
+    // Helper for prompt creation form
+    async function autoTranslateForm() {
+      const promptElem = document.getElementById('form-prompt');
+      const titleElem = document.getElementById('form-title');
+      const descElem = document.getElementById('form-desc');
+      const text = promptElem.value.trim();
+
+      if (!text) {
+        showToast('번역할 프롬프트 템플릿 내용을 먼저 입력해주세요.', 'error');
+        promptElem.focus();
+        return;
+      }
+
+      const hasKorean = /[\u3131-\uD79D]/.test(text);
+      const targetLang = hasKorean ? 'en' : 'ko';
+      const btn = document.getElementById('lbl-form-translate-btn');
+      const origText = btn.textContent;
+      btn.textContent = '번역 중...';
+
+      try {
+        const [tPrompt, tTitle, tDesc] = await Promise.all([
+          translateText(text, targetLang, hasKorean ? 'ko' : 'en'),
+          titleElem.value.trim() ? translateText(titleElem.value.trim(), targetLang, hasKorean ? 'ko' : 'en') : '',
+          descElem.value.trim() ? translateText(descElem.value.trim(), targetLang, hasKorean ? 'ko' : 'en') : ''
+        ]);
+
+        promptElem.value = tPrompt;
+        if (tTitle) titleElem.value = tTitle;
+        if (tDesc) descElem.value = tDesc;
+
+        showToast(`${targetLang === 'en' ? '영어(English)' : '한국어(Korean)'}로 자동 번역되었습니다!`, 'success');
+      } catch (err) {
+        console.error('Auto translate form failed:', err);
+        showToast('자동 번역 중 오류가 발생했습니다.', 'error');
+      } finally {
+        btn.textContent = origText;
+      }
+    }
+
+    // 15. MODAL HELPERS
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) {
+        m.classList.remove('hidden');
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) m.classList.add('hidden');
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll('[role="dialog"]').forEach(m => m.classList.add('hidden'));
+    }
+
+    // 16. PWA INSTALLATION & SERVICE WORKER (Rule 10)
+    function initPWA() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+          console.warn('SW registration failed:', err);
+        });
+      }
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.getElementById('install-pwa-btn');
+        if (installBtn) {
+          installBtn.classList.remove('hidden');
+          installBtn.addEventListener('click', () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(() => {
+              deferredPrompt = null;
+              installBtn.classList.add('hidden');
+            });
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
